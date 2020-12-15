@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Container from '../../base-ui/container';
 import NavbarBrand from './brand';
 import NavbarContacts from './contacts';
 
 const NavbarContainer = styled.nav`
   display: flex;
+  justify-content: center;
+  width: 100%;
 `;
 
 const NavbarRow = styled.div`
@@ -18,10 +21,12 @@ const NavbarRow = styled.div`
 const BaseNavbar: React.FC = () => {
   return (
     <NavbarContainer className="navbar">
-      <NavbarRow className="navbar__row">
-        <NavbarBrand />
-        <NavbarContacts />
-      </NavbarRow>
+      <Container>
+        <NavbarRow className="navbar__row">
+          <NavbarBrand />
+          <NavbarContacts />
+        </NavbarRow>
+      </Container>
     </NavbarContainer>
   );
 };

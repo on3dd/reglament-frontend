@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import GlobalStyle from './utils/globalStyle';
 
-import Container from './components/base-ui/container';
 import Navbar from './components/base-ui/navbar';
 import Footer from './components/base-ui/footer';
 
@@ -14,14 +13,18 @@ const AppContainer = styled.div`
   width: 100%;
 `;
 
+const Main = styled.main`
+  width: 100%;
+`;
+
 const App: React.FC = () => {
   return (
     <AppContainer>
       <GlobalStyle />
 
-      <Container>
-        <Navbar />
-      </Container>
+      <Navbar />
+
+      <Main></Main>
 
       <Footer />
     </AppContainer>

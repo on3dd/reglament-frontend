@@ -4,10 +4,12 @@ import styled from 'styled-components';
 import Container from '../container';
 
 const FooterContainer = styled.footer`
+  position: absolute;
+  bottom: 0%;
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   color: #ffffff;
   background-color: #0066b3;
 `;

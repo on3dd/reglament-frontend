@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import GlobalStyle from './utils/globalStyle';
+
 import Container from './components/base-ui/container';
 import Navbar from './components/base-ui/navbar';
 
@@ -14,6 +16,8 @@ const AppContainer = styled.div`
 const App: React.FC = () => {
   return (
     <AppContainer>
+      <GlobalStyle />
+
       <Container>
         <Navbar />
       </Container>

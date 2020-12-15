@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import NavbarBrand from './NavbarBrand';
-import NavbarContacts from './NavbarContacts';
+import NavbarBrand from './brand';
+import NavbarContacts from './contacts';
 
 const NavbarContainer = styled.nav`
   display: flex;

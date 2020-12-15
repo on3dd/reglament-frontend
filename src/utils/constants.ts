@@ -1,3 +1,5 @@
+import { Icons } from '@reglament';
+
 export const COLORS = {
   black: 'rgba(0, 0, 0, 0.9)',
   white: 'rgba(255, 255, 255, 1)',
@@ -16,4 +18,9 @@ export const BREAKPOINTS = {
   tablet: '768px',
   laptop: '1366px',
   desktop: '1680px',
+};
+
+export const ICONS: Icons = {
+  mail: require('../assets/icons/mail.svg').default,
+  phone: require('../assets/icons/phone.svg').default,
 };

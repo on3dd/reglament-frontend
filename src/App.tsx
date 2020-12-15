@@ -5,6 +5,7 @@ import GlobalStyle from './utils/globalStyle';
 
 import Container from './components/base-ui/container';
 import Navbar from './components/base-ui/navbar';
+import Footer from './components/base-ui/footer';
 
 const AppContainer = styled.div`
   display: flex;
@@ -21,6 +22,8 @@ const App: React.FC = () => {
       <Container>
         <Navbar />
       </Container>
+
+      <Footer />
     </AppContainer>
   );
 };

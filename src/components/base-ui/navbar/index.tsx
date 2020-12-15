@@ -1,10 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NavbarContainer = styled.div``;
+import NavbarBrand from './NavbarBrand';
+
+const NavbarContainer = styled.div`
+  display: flex;
+`;
 
 const BaseNavbar: React.FC = () => {
-  return <NavbarContainer>nigger</NavbarContainer>;
+  return (
+    <NavbarContainer className="navbar">
+      <NavbarBrand />
+    </NavbarContainer>
+  );
 };
 
 export default BaseNavbar;

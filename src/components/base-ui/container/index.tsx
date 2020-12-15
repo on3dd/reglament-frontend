@@ -11,7 +11,7 @@ const Container = styled.div`
 const BaseContainer: React.FC<PropsWithChildren<BaseContainerProps>> = ({
   children,
 }) => {
-  return <Container>{children}</Container>;
+  return <Container className="container">{children}</Container>;
 };
 
 export default BaseContainer;

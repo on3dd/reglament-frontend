@@ -22,12 +22,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${COLORS.backgroundColor};
   }
 
-  #app {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-
   .truncate {
     white-space: nowrap;
     overflow: hidden;

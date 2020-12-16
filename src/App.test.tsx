@@ -2,8 +2,23 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders header', () => {
+  const { container } = render(<App />);
+
+  const header = container.querySelector('header');
+  expect(header).toBeInTheDocument();
+});
+
+test('renders main', () => {
+  const { container } = render(<App />);
+
+  const header = container.querySelector('main');
+  expect(header).toBeInTheDocument();
+});
+
+test('renders footer', () => {
+  const { container } = render(<App />);
+
+  const header = container.querySelector('footer');
+  expect(header).toBeInTheDocument();
 });

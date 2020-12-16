@@ -5,13 +5,13 @@ import Container from '../../base-ui/container';
 import NavbarBrand from './brand';
 import NavbarContacts from './contacts';
 
-const NavbarContainer = styled.nav`
+const NavbarContainer = styled.header`
   display: flex;
   justify-content: center;
   width: 100%;
 `;
 
-const NavbarRow = styled.div`
+const NavbarRow = styled.nav`
   width: 100%;
   display: flex;
   align-items: center;

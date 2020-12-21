@@ -12,10 +12,11 @@ import Main from './components/base-ui/main';
 import Footer from './components/base-ui/footer';
 
 const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   width: 100%;
+  height: 100%;
+  min-height: 100vh;
 `;
 
 type AppProps = RouteConfigComponentProps<{}>;

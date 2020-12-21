@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Container from '../container';
 
 const FooterContainer = styled.footer`
-  position: absolute;
-  bottom: 0%;
+  /* position: absolute;
+  bottom: 0%; */
   display: flex;
   justify-content: center;
   width: 100%;

@@ -12,4 +12,14 @@ declare module '@reglament' {
     | 'number'
     | 'checkbox'
     | 'date';
+
+  export interface Document {
+    id: number;
+    type: string;
+    name: string;
+    date: string;
+    agency: string;
+    number: string;
+    create_date: string;
+  }
 }

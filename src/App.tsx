@@ -1,9 +1,11 @@
 import React from 'react';
+import {
+  renderRoutes,
+  RouteConfigComponentProps,
+} from 'react-router-config';
 import styled from 'styled-components';
 
 import GlobalStyle from './utils/globalStyle';
-
-import RouterView from './pages';
 
 import Navbar from './components/base-ui/navbar';
 import Main from './components/base-ui/main';
@@ -16,16 +18,16 @@ const AppContainer = styled.div`
   width: 100%;
 `;
 
-const App: React.FC = () => {
+type AppProps = RouteConfigComponentProps<{}>;
+
+const App: React.FC<AppProps> = ({ route }: AppProps) => {
   return (
     <AppContainer>
       <GlobalStyle />
 
       <Navbar />
 
-      <Main>
-        <RouterView />
-      </Main>
+      <Main>{route && renderRoutes(route.routes)}</Main>
 
       <Footer />
     </AppContainer>

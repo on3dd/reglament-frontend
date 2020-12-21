@@ -1,27 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { InputType } from '@reglament';
 
+type InputValue = string | number;
+
 type TableHeaderInputProps = {
   id: string;
-  label: string;
-  value?: string;
   type?: InputType;
+  value?: InputValue;
+  checked?: boolean;
   onChange: (...args: any[]) => void;
 };
-
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const InputLabel = styled.label`
-  margin-right: 1ch;
-  color: #5b5b5b;
-  white-space: nowrap;
-  text-transform: lowercase;
-`;
 
 const InputInput = styled.input`
   width: 100%;
@@ -34,16 +24,31 @@ const InputInput = styled.input`
 
 const TableHeaderInput: React.FC<TableHeaderInputProps> = ({
   id,
-  label,
-  value = '',
   type = 'text',
+  value = '',
+  checked = false,
   onChange,
 }: TableHeaderInputProps) => {
+  const checkbox = useMemo(() => {
+    return type === 'checkbox';
+  }, [type]);
+
+  const memoizedValue = useMemo(() => {
+    return checkbox ? '' : value;
+  }, [checkbox, value]);
+
+  const memoizedChecked = useMemo(() => {
+    return checkbox ? checked : undefined;
+  }, [checkbox, checked]);
+
   return (
-    <InputContainer className="header__input">
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <InputInput id={id} value={value} type={type} onChange={onChange} />
-    </InputContainer>
+    <InputInput
+      id={id}
+      type={type}
+      value={memoizedValue}
+      checked={memoizedChecked}
+      onChange={onChange}
+    />
   );
 };
 

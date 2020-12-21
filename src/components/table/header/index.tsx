@@ -1,16 +1,23 @@
 import React, { useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
+import TableHeaderGroup from './group';
 import TableHeaderInput from './input';
 
 const HeaderContainer = styled.div`
   display: grid;
-  grid-template-columns: 120px 230px 70px 90px 220px 1fr 85px;
-  grid-template-rows: auto;
   column-gap: 1rem;
+  grid-template-columns: 110px 210px 70px 80px 1.5fr 1fr 85px;
+  grid-template-rows: auto;
   padding: 1rem;
   margin-bottom: 0.85rem;
   background-color: #e5e5e5;
+`;
+
+const TableHeaderDouble = styled.div`
+  display: inline-grid;
+  column-gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const TableHeaderButton = styled.button`
@@ -28,45 +35,68 @@ const TableHeader: React.FC = () => {
 
   return (
     <HeaderContainer className="table__header">
-      <TableHeaderInput
-        id="agency"
-        label="Орган"
-        type="text"
-        onChange={onChange}
-      />
+      <TableHeaderGroup id="agency" label="Орган">
+        <TableHeaderInput
+          id="agency"
+          type="text"
+          value="Глава ГО"
+          onChange={onChange}
+        />
+      </TableHeaderGroup>
 
-      <TableHeaderInput
-        id="document__type"
-        label="Вид документа"
-        onChange={onChange}
-      />
+      <TableHeaderGroup id="document__type" label="Вид документа">
+        <TableHeaderInput
+          id="document__type"
+          type="text"
+          value="Постановление"
+          onChange={onChange}
+        />
+      </TableHeaderGroup>
 
-      <TableHeaderInput
-        id="project"
-        label="Проект"
-        type="checkbox"
-        onChange={onChange}
-      />
+      <TableHeaderGroup id="project" label="Проект">
+        <TableHeaderInput
+          id="project"
+          type="checkbox"
+          checked={true}
+          onChange={onChange}
+        />
+      </TableHeaderGroup>
 
-      <TableHeaderInput
-        id="number"
-        label="№"
-        type="number"
-        onChange={onChange}
-      />
+      <TableHeaderGroup id="number" label="№">
+        <TableHeaderInput
+          id="number"
+          type="text"
+          value="490-па"
+          onChange={onChange}
+        />
+      </TableHeaderGroup>
 
-      <TableHeaderInput
-        id="date"
-        label="Дата"
-        type="date"
-        onChange={onChange}
-      />
+      <TableHeaderGroup id="date" label="Дата">
+        <TableHeaderDouble>
+          <TableHeaderInput
+            id="date"
+            type="date"
+            value="1998-10-25"
+            onChange={onChange}
+          />
 
-      <TableHeaderInput
-        id="name"
-        label="Наименование"
-        onChange={onChange}
-      />
+          <TableHeaderInput
+            id="date"
+            type="date"
+            value="2020-12-31"
+            onChange={onChange}
+          />
+        </TableHeaderDouble>
+      </TableHeaderGroup>
+
+      <TableHeaderGroup id="name" label="Наименование">
+        <TableHeaderInput
+          id="name"
+          type="text"
+          value=""
+          onChange={onChange}
+        />
+      </TableHeaderGroup>
 
       <TableHeaderButton>Поиск</TableHeaderButton>
     </HeaderContainer>

@@ -1,17 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 
+import DefaultLayout from '../layouts/default';
 import AuthComponent from '../components/auth';
-
-const Div = styled.div`
-  margin-top: 70px;
-`;
 
 const Auth: React.FC = () => {
   return (
-    <Div>
+    <DefaultLayout heading="Авторизация">
       <AuthComponent />
-    </Div>
+    </DefaultLayout>
   );
 };
 

@@ -7,9 +7,9 @@ type BaseMainProps = PropsWithChildren<{}>;
 
 const MainContainer = styled.main`
   display: flex;
-  justify-content: center;
   width: 100%;
   margin-top: 1rem;
+  padding-top: 1rem;
 `;
 
 const BaseMain: React.FC<BaseMainProps> = ({ children }) => {

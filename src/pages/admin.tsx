@@ -1,17 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 
+import DefaultLayout from '../layouts/default';
 import AdminComponent from '../components/admin';
-
-const Div = styled.div`
-  margin-top: 70px;
-`;
 
 const Admin: React.FC = () => {
   return (
-    <Div>
+    <DefaultLayout heading="Панель администратора">
       <AdminComponent />
-    </Div>
+    </DefaultLayout>
   );
 };
 

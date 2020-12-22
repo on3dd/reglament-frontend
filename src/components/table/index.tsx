@@ -5,9 +5,7 @@ import TableHeader from './header';
 import TableBody from './body';
 import TableFooter from './footer';
 
-const TableContainer = styled.div`
-  width: 100%;
-`;
+const TableContainer = styled.div``;
 
 const TableComponent: React.FC = () => {
   return (

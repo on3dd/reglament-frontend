@@ -1,6 +1,6 @@
 import App from '../App';
 
-// import Root from '../pages/index';
+import Auth from '../pages/auth';
 import Table from '../pages/table';
 
 const routes = [
@@ -11,6 +11,11 @@ const routes = [
         path: '/',
         exact: true,
         component: Table,
+      },
+      {
+        path: '/auth',
+        exact: true,
+        component: Auth,
       },
     ],
   },

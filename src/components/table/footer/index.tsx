@@ -5,14 +5,8 @@ type TableFooterLinkProps = {
   active?: boolean;
 };
 
-const link = css`
-  border: none;
-  background: none;
+const margin = css`
   margin-right: 1ch;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const FooterContainer = styled.div`
@@ -20,14 +14,22 @@ const FooterContainer = styled.div`
 `;
 
 const TableFooterLink = styled.button`
-  ${link}
+  ${margin}
+
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   font-weight: ${(props: TableFooterLinkProps) =>
     props.active ? 600 : 400};
 `;
 
-const TableFooterArrow = styled.button`
-  ${link}
+const TableFooterArrow = styled.span`
+  ${margin}
 
   color: #0066b3;
 `;
@@ -39,7 +41,7 @@ const TableFooter: React.FC = () => {
       <TableFooterLink>2</TableFooterLink>
       <TableFooterLink>3</TableFooterLink>
 
-      <TableFooterArrow>{'>>'}</TableFooterArrow>
+      <TableFooterArrow>...</TableFooterArrow>
 
       <TableFooterLink>228</TableFooterLink>
     </FooterContainer>

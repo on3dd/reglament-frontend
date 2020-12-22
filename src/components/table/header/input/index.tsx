@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { InputType } from '@reglament';
 
+import Input from '../../../base-ui/input';
+
 type InputValue = string | number;
 
 type TableHeaderInputProps = {
@@ -13,13 +15,9 @@ type TableHeaderInputProps = {
   onChange: (...args: any[]) => void;
 };
 
-const InputInput = styled.input`
+const InputInput = styled(Input)`
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0.25rem;
-  border: 0.5px solid #acacac;
-  border-radius: 4px;
 `;
 
 const TableHeaderInput: React.FC<TableHeaderInputProps> = ({

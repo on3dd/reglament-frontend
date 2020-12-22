@@ -1,6 +1,8 @@
 import React, { useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
+import Button from '../../base-ui/button';
+
 import TableHeaderGroup from './group';
 import TableHeaderInput from './input';
 
@@ -20,13 +22,7 @@ const TableHeaderDouble = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-const TableHeaderButton = styled.button`
-  color: #ffffff;
-  background-color: #0066b3;
-  border: none;
-  border-radius: 4px;
-  text-transform: lowercase;
-`;
+const TableHeaderButton = styled(Button)``;
 
 const TableHeader: React.FC = () => {
   const onChange = useCallback((evt: ChangeEvent) => {

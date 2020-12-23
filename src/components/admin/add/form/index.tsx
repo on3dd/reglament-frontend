@@ -30,7 +30,7 @@ const FormControlWide = styled.div`
   }
 `;
 
-const AuthForm: React.FC = () => {
+const AdminAddForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data: any) => {
@@ -176,4 +176,4 @@ const AuthForm: React.FC = () => {
   );
 };
 
-export default AuthForm;
+export default AdminAddForm;

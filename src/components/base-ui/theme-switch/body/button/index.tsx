@@ -5,8 +5,15 @@ import { Icon } from '@reglament';
 
 import IconComponent from '../../../icon';
 
+type ButtonScheme = 'black' | 'white' | 'sepia';
+
 type ThemeSwitchBodyButtonProps = {
   name: Icon;
+  scheme?: ButtonScheme;
+};
+
+type SwitchControlProps = {
+  scheme?: ButtonScheme;
 };
 
 const SwitchButton = styled.button`
@@ -14,7 +21,31 @@ const SwitchButton = styled.button`
   height: 30px;
   margin: 0;
   padding: 0;
+  cursor: pointer;
   border-radius: 0px;
+
+  border-color: ${({ scheme }: SwitchControlProps) => {
+    switch (scheme) {
+      case 'sepia':
+        return '#382819';
+
+      default:
+        return '#000000';
+    }
+  }};
+
+  background-color: ${({ scheme }: SwitchControlProps) => {
+    switch (scheme) {
+      case 'black':
+        return '#000000';
+
+      case 'sepia':
+        return '#382819';
+
+      default:
+        return 'transparent';
+    }
+  }};
 `;
 
 const SwitchIcon = styled(IconComponent)`
@@ -25,9 +56,10 @@ const SwitchIcon = styled(IconComponent)`
 
 const ThemeSwitchBodyButton: React.FC<ThemeSwitchBodyButtonProps> = ({
   name,
+  scheme = 'white',
 }: ThemeSwitchBodyButtonProps) => {
   return (
-    <SwitchButton>
+    <SwitchButton scheme={scheme}>
       <SwitchIcon name={name} />
     </SwitchButton>
   );

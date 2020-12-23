@@ -3,7 +3,12 @@ import styled from 'styled-components';
 
 import Container from '../../container';
 import ThemeSwitchBodyItem from './item';
+import ThemeSwitchBodyClose from './close';
 import ThemeSwitchBodyButton from './button';
+
+type ThemeSwitchBodyProps = {
+  onClick: (...args: any[]) => void;
+};
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -13,27 +18,39 @@ const BodyContainer = styled.div`
 
 const StyledContainer = styled(Container)`
   display: flex;
+  align-content: center;
+  justify-content: space-between;
 `;
 
-const ThemeSwitchBody: React.FC = () => {
+const ThemeSwitchBodyGroup = styled.div`
+  display: flex;
+`;
+
+const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = ({
+  onClick,
+}: ThemeSwitchBodyProps) => {
   return (
     <BodyContainer>
       <StyledContainer>
-        <ThemeSwitchBodyItem heading="Размер шрифта">
-          <ThemeSwitchBodyButton name="font_dec" />
-          <ThemeSwitchBodyButton name="font_inc" />
-        </ThemeSwitchBodyItem>
+        <ThemeSwitchBodyGroup>
+          <ThemeSwitchBodyItem heading="Размер шрифта">
+            <ThemeSwitchBodyButton name="font_dec" />
+            <ThemeSwitchBodyButton name="font_inc" />
+          </ThemeSwitchBodyItem>
 
-        <ThemeSwitchBodyItem heading="Интервалы">
-          <ThemeSwitchBodyButton name="interval_dec" />
-          <ThemeSwitchBodyButton name="interval_inc" />
-        </ThemeSwitchBodyItem>
+          <ThemeSwitchBodyItem heading="Интервалы">
+            <ThemeSwitchBodyButton name="interval_dec" />
+            <ThemeSwitchBodyButton name="interval_inc" />
+          </ThemeSwitchBodyItem>
 
-        <ThemeSwitchBodyItem heading="Цвета">
-          <ThemeSwitchBodyButton name="font" />
-          <ThemeSwitchBodyButton name="font" />
-          <ThemeSwitchBodyButton name="font" />
-        </ThemeSwitchBodyItem>
+          <ThemeSwitchBodyItem heading="Цвета">
+            <ThemeSwitchBodyButton name="font_white" scheme="black" />
+            <ThemeSwitchBodyButton name="font_black" scheme="white" />
+            <ThemeSwitchBodyButton name="font_sepia" scheme="sepia" />
+          </ThemeSwitchBodyItem>
+        </ThemeSwitchBodyGroup>
+
+        <ThemeSwitchBodyClose onClick={onClick} />
       </StyledContainer>
     </BodyContainer>
   );

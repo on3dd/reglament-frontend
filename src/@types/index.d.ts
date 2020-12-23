@@ -1,11 +1,14 @@
 declare module '@reglament' {
   export interface Icons {
-    mail: string;
-    phone: string;
     eye: string;
-    font: string;
+    mail: string;
+    close: string;
+    phone: string;
     font_inc: string;
     font_dec: string;
+    font_black: string;
+    font_white: string;
+    font_sepia: string;
     interval_inc: string;
     interval_dec: string;
   }

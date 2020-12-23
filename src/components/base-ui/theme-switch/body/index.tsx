@@ -13,6 +13,8 @@ type ThemeSwitchBodyProps = {
 const BodyContainer = styled.div`
   width: 100%;
   padding: 1rem 0;
+
+  color: #000000;
   background-color: #f2f2f2;
 `;
 

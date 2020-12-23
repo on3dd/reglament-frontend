@@ -1,17 +1,30 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-type TableFooterLinkProps = {
-  active?: boolean;
-};
+import { PropsWithTheme } from '@reglament';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 
 const margin = css`
   margin-right: 1ch;
 `;
 
+type FooterContainerProps = PropsWithTheme<{}>;
+
 const FooterContainer = styled.div`
   margin-bottom: 0.85rem;
+
+  button,
+  span {
+    color: ${({ theme }: FooterContainerProps) => {
+      return theme.fontColor;
+    }};
+  }
 `;
+
+type TableFooterLinkProps = {
+  active?: boolean;
+};
 
 const TableFooterLink = styled.button`
   ${margin}
@@ -30,13 +43,13 @@ const TableFooterLink = styled.button`
 
 const TableFooterArrow = styled.span`
   ${margin}
-
-  color: #0066b3;
 `;
 
 const TableFooter: React.FC = () => {
+  const { theme } = useThemeContext();
+
   return (
-    <FooterContainer>
+    <FooterContainer theme={theme}>
       <TableFooterLink active={true}>1</TableFooterLink>
       <TableFooterLink>2</TableFooterLink>
       <TableFooterLink>3</TableFooterLink>

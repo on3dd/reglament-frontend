@@ -1,10 +1,16 @@
 import React, { useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
+import { PropsWithTheme } from '@reglament';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
 import Button from '../../base-ui/button';
 
 import TableHeaderGroup from './group';
 import TableHeaderInput from './input';
+
+type HeaderContainerProps = PropsWithTheme<{}>;
 
 const HeaderContainer = styled.div`
   display: grid;
@@ -13,7 +19,10 @@ const HeaderContainer = styled.div`
   grid-template-rows: auto;
   padding: 1rem;
   margin-bottom: 0.85rem;
-  background-color: #e5e5e5;
+
+  background-color: ${({ theme }: HeaderContainerProps) => {
+    return theme.secondaryColor;
+  }};
 `;
 
 const TableHeaderDouble = styled.div`
@@ -25,12 +34,14 @@ const TableHeaderDouble = styled.div`
 const TableHeaderButton = styled(Button)``;
 
 const TableHeader: React.FC = () => {
+  const { theme } = useThemeContext();
+
   const onChange = useCallback((evt: ChangeEvent) => {
     console.log('evt.target', evt.target);
   }, []);
 
   return (
-    <HeaderContainer className="table__header">
+    <HeaderContainer theme={theme} className="table__header">
       <TableHeaderGroup id="agency" label="Орган">
         <TableHeaderInput
           id="agency"

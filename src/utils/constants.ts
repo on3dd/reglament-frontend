@@ -1,7 +1,7 @@
 import { Icons, ReglamentThemes } from '@reglament';
 
 export const COLORS = {
-  black: 'rgba(0, 0, 0, 0.84)',
+  black: 'rgba(0, 0, 0, 1)',
   white: 'rgba(255, 255, 255, 1)',
   gray: 'rgba(91, 91, 91, 1)',
   cloud: 'rgba(229, 229, 229, 1)',
@@ -14,9 +14,34 @@ export const THEMES: ReglamentThemes = {
   light: {
     fontColor: COLORS.black,
     fontColorAlt: COLORS.gray,
+    fontColorNeg: COLORS.white,
+    linkColor: COLORS.blue,
+    buttonColor: COLORS.blue,
     primaryColor: COLORS.blue,
     secondaryColor: COLORS.cloud,
     backgroundColor: COLORS.white,
+  },
+
+  dark: {
+    fontColor: COLORS.white,
+    fontColorAlt: COLORS.black,
+    fontColorNeg: COLORS.black,
+    linkColor: COLORS.white,
+    buttonColor: COLORS.cloud,
+    primaryColor: COLORS.white,
+    secondaryColor: COLORS.white,
+    backgroundColor: COLORS.black,
+  },
+
+  sepia: {
+    fontColor: COLORS.green,
+    fontColorAlt: COLORS.brown,
+    fontColorNeg: COLORS.brown,
+    linkColor: COLORS.white,
+    buttonColor: COLORS.green,
+    primaryColor: COLORS.green,
+    secondaryColor: COLORS.white,
+    backgroundColor: COLORS.brown,
   },
 };
 

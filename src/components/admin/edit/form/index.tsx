@@ -40,7 +40,6 @@ const FormControlNested = styled(FormControl)`
 const FormLabelNested = styled(FormLabel)`
   margin-right: 1ch;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.84);
 `;
 
 const AdminEditForm: React.FC = () => {

@@ -2,18 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const AdminHomeContainer = styled.div``;
+import { PropsWithTheme } from '@reglament';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
+type AdminHomeContainerProps = PropsWithTheme<{}>;
+
+const AdminHomeContainer = styled.div`
+  a {
+    color: ${({ theme }: AdminHomeContainerProps) => {
+      return theme.linkColor;
+    }};
+  }
+`;
 
 const AdminHomeLink = styled(Link)`
   display: block;
-  color: #0066b3;
+  color: inherit;
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
 `;
 
 const AdminHomeComponent: React.FC = () => {
+  const { theme } = useThemeContext();
+
   return (
-    <AdminHomeContainer>
+    <AdminHomeContainer theme={theme}>
       <AdminHomeLink to="/admin/add">
         Добавить новый документ
       </AdminHomeLink>

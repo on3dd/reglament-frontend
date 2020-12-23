@@ -1,8 +1,13 @@
-import React, { createContext, PropsWithChildren, useMemo } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useMemo,
+  useContext,
+} from 'react';
 
 import { Theme, ReglamentTheme } from '@reglament';
 
-export const ThemeContext = createContext({});
+export const ThemeContext = createContext({} as ThemeProviderProps);
 
 type ThemeProviderProps = PropsWithChildren<{
   theme: Theme;
@@ -22,3 +27,5 @@ export const ThemeProvider = ({
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
+
+export const useThemeContext = () => useContext(ThemeContext);

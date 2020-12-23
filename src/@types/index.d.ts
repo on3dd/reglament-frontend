@@ -33,9 +33,9 @@ declare module '@reglament' {
   }
 
   export interface ReglamentThemes {
+    dark: Theme;
     light: Theme;
-    // dark: Theme;
-    // sepia: Theme;
+    sepia: Theme;
   }
 
   export type ReglamentTheme = keyof ReglamentThemes;
@@ -43,8 +43,13 @@ declare module '@reglament' {
   export interface Theme {
     fontColor: string;
     fontColorAlt: string;
+    fontColorNeg: string;
+    linkColor: string;
+    buttonColor: string;
     primaryColor: string;
     secondaryColor: string;
     backgroundColor: string;
   }
+
+  export type PropsWithTheme<T> = T & { theme: Theme };
 }

@@ -1,10 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
+import { PropsWithTheme } from '@reglament';
+
+import { useThemeContext } from '../../../../utils/contexts/ThemeContext';
+
 type TableHeaderGroupProps = PropsWithChildren<{
   id: string;
   label: string;
 }>;
+
+type InputLabelProps = PropsWithTheme<{}>;
 
 const InputContainer = styled.div`
   display: flex;
@@ -14,9 +20,12 @@ const InputContainer = styled.div`
 
 const InputLabel = styled.label`
   margin-right: 1ch;
-  color: #5b5b5b;
   white-space: nowrap;
   text-transform: lowercase;
+
+  color: ${({ theme }: InputLabelProps) => {
+    return theme.fontColorAlt;
+  }};
 `;
 
 const TableHeaderGroup: React.FC<TableHeaderGroupProps> = ({
@@ -24,9 +33,13 @@ const TableHeaderGroup: React.FC<TableHeaderGroupProps> = ({
   label,
   children,
 }: TableHeaderGroupProps) => {
+  const { theme } = useThemeContext();
+
   return (
     <InputContainer className="header__input">
-      <InputLabel htmlFor={id}>{label}</InputLabel>
+      <InputLabel theme={theme} htmlFor={id}>
+        {label}
+      </InputLabel>
 
       <React.Fragment>{children}</React.Fragment>
     </InputContainer>

@@ -1,26 +1,39 @@
-import React, { HTMLProps, PropsWithChildren } from 'react';
+import React, { PropsWithChildren, HTMLProps } from 'react';
 import styled from 'styled-components';
 
+import { PropsWithTheme } from '@reglament';
+
 import { lowercase } from '../mixins';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 
 type BaseButtonProps = PropsWithChildren<
   HTMLProps<HTMLButtonElement> & {}
 >;
 
+type ButtonProps = PropsWithTheme<{}>;
+
 const Button = styled.button`
   ${lowercase}
 
-  color: #ffffff;
-  background: #0066b3;
   border: none;
   border-radius: 4px;
+
+  color: ${({ theme }: ButtonProps) => theme.fontColorNeg};
+  background-color: ${({ theme }: ButtonProps) => theme.buttonColor};
 `;
 
 const BaseButton: React.FC<BaseButtonProps> = ({
   children,
   className,
 }: BaseButtonProps) => {
-  return <Button className={className}>{children}</Button>;
+  const { theme } = useThemeContext();
+
+  return (
+    <Button theme={theme} className={className}>
+      {children}
+    </Button>
+  );
 };
 
 export default BaseButton;

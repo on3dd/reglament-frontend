@@ -2,7 +2,7 @@ import React from 'react';
 import { TableInstance } from 'react-table';
 import styled, { css } from 'styled-components';
 
-import { Document } from '@reglament';
+import { Document, PropsWithTheme } from '@reglament';
 
 type TableBodyTableProps = {
   instance: TableInstance<Document>;
@@ -25,11 +25,13 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
+type ThProps = PropsWithTheme<{}>;
+
 const Th = styled.th`
   ${border}
   ${cell}
 
-  color: #0066B3;
+  color: ${({ theme }: ThProps) => theme.primaryColor};
 `;
 
 const Td = styled.td`

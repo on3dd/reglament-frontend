@@ -1,17 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { PropsWithTheme } from '@reglament';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
 import Container from '../container';
 
+type FooterContainerProps = PropsWithTheme<{}>;
+
 const FooterContainer = styled.footer`
-  /* position: absolute;
-  bottom: 0%; */
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 1rem 0;
-  color: #ffffff;
-  background-color: #0066b3;
+
+  color: ${({ theme }: FooterContainerProps) => {
+    return theme.fontColorNeg;
+  }};
+
+  background-color: ${({ theme }: FooterContainerProps) => {
+    return theme.primaryColor;
+  }}; ;
 `;
 
 const FooterContent = styled.div`
@@ -33,8 +43,10 @@ const FooterAgeLimit = styled.span`
 `;
 
 const BaseFooter: React.FC = () => {
+  const { theme } = useThemeContext();
+
   return (
-    <FooterContainer className="footer">
+    <FooterContainer theme={theme} className="footer">
       <Container>
         <FooterContent>
           <FooterText>

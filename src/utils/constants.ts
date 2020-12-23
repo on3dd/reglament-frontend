@@ -1,15 +1,23 @@
-import { Icons } from '@reglament';
+import { Icons, ReglamentThemes } from '@reglament';
 
 export const COLORS = {
-  black: 'rgba(0, 0, 0, 0.9)',
+  black: 'rgba(0, 0, 0, 0.84)',
   white: 'rgba(255, 255, 255, 1)',
-  gray: 'rgba(0, 0, 0, 0.68)',
-  grayDarken: 'rgba(0, 0, 0, 0.84)',
-  grayLighten: 'rgba(0, 0, 0, 0.54)',
-  primary: 'rgba(41, 128, 185, 1.0)',
-  backgroundColor: 'rgba(255, 255, 255, 1)',
-  borderColor: 'rgba(0, 0, 0, 0.1)',
-  shadowColor: 'rgba(0, 0, 0, 0.25)',
+  gray: 'rgba(91, 91, 91, 1)',
+  cloud: 'rgba(229, 229, 229, 1)',
+  blue: 'rgba(0, 102, 179, 1)',
+  brown: 'rgba(56, 40, 25, 1)',
+  green: 'rgba(181, 224, 101, 1)',
+};
+
+export const THEMES: ReglamentThemes = {
+  light: {
+    fontColor: COLORS.black,
+    fontColorAlt: COLORS.gray,
+    primaryColor: COLORS.blue,
+    secondaryColor: COLORS.cloud,
+    backgroundColor: COLORS.white,
+  },
 };
 
 // For using with min-width media query

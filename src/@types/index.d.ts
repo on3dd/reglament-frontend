@@ -31,4 +31,20 @@ declare module '@reglament' {
     number: string;
     create_date: string;
   }
+
+  export interface ReglamentThemes {
+    light: Theme;
+    // dark: Theme;
+    // sepia: Theme;
+  }
+
+  export type ReglamentTheme = keyof ReglamentThemes;
+
+  export interface Theme {
+    fontColor: string;
+    fontColorAlt: string;
+    primaryColor: string;
+    secondaryColor: string;
+    backgroundColor: string;
+  }
 }

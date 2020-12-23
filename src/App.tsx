@@ -1,16 +1,14 @@
-import React from 'react';
-import {
-  renderRoutes,
-  RouteConfigComponentProps,
-} from 'react-router-config';
+import React, { useState, useCallback } from 'react';
+import { RouteConfigComponentProps } from 'react-router-config';
 import styled from 'styled-components';
 
+import { Theme, ReglamentTheme } from '@reglament';
+
+import { ThemeProvider } from './utils/contexts/ThemeContext';
+import { THEMES } from './utils/constants';
 import GlobalStyle from './utils/globalStyle';
 
-import Navbar from './components/base-ui/navbar';
-import Main from './components/base-ui/main';
-import Footer from './components/base-ui/footer';
-import ThemeSwitch from './components/base-ui/theme-switch';
+import RootComponent from './components/base-ui/root';
 
 const AppContainer = styled.div`
   display: grid;
@@ -23,18 +21,28 @@ const AppContainer = styled.div`
 type AppProps = RouteConfigComponentProps<{}>;
 
 const App: React.FC<AppProps> = ({ route }: AppProps) => {
+  const [theme, setTheme] = useState(THEMES.light as Theme);
+
+  const changeTheme = useCallback(
+    (theme: ReglamentTheme) => {
+      console.log('changeTheme', theme);
+
+      switch (theme) {
+        default:
+          setTheme(() => THEMES.light);
+      }
+    },
+    [setTheme],
+  );
+
   return (
-    <AppContainer>
-      <GlobalStyle />
+    <ThemeProvider theme={theme} changeTheme={changeTheme}>
+      <AppContainer>
+        <GlobalStyle />
 
-      <ThemeSwitch />
-
-      <Navbar />
-
-      <Main>{route && renderRoutes(route.routes)}</Main>
-
-      <Footer />
-    </AppContainer>
+        <RootComponent route={route} />
+      </AppContainer>
+    </ThemeProvider>
   );
 };
 

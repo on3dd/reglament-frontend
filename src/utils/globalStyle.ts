@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { COLORS } from './constants';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -16,8 +15,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     height: 100%;
-    color: ${COLORS.grayDarken};
-    background-color: ${COLORS.backgroundColor};
   }
 
   .truncate {

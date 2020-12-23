@@ -169,7 +169,7 @@ const AuthForm: React.FC = () => {
       <FormGroup>
         <FormLabel />
         <FormControl>
-          <FormButton type="submit">Войти</FormButton>
+          <FormButton type="submit">Добавить документ</FormButton>
         </FormControl>
       </FormGroup>
     </Form>

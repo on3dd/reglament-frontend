@@ -9,6 +9,7 @@ import {
   FormLabelFile,
   FormControl,
   FormInput,
+  FormInputWide,
   FormInputFile,
   FormErrors,
   FormButton,
@@ -21,12 +22,6 @@ const FormControlNested = styled.div`
 
   input {
     margin-right: 1ch;
-  }
-`;
-
-const FormControlWide = styled.div`
-  input {
-    width: 100%;
   }
 `;
 
@@ -128,8 +123,8 @@ const AdminAddForm: React.FC = () => {
 
       <FormGroup>
         <FormLabel htmlFor="name">Наименование</FormLabel>
-        <FormControlWide>
-          <FormInput
+        <FormControl>
+          <FormInputWide
             id="name"
             name="name"
             value="О мерах по укреплению пожарной безопасности на осенне-зимний период 2020-2021 годов"
@@ -142,7 +137,7 @@ const AdminAddForm: React.FC = () => {
               Пожалуйста, введите дату название документа.
             </FormErrors>
           )}
-        </FormControlWide>
+        </FormControl>
       </FormGroup>
 
       <FormGroup>

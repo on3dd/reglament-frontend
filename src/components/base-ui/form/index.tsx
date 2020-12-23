@@ -43,6 +43,10 @@ export const FormErrors = styled.span`
 
 export const FormInput = styled(Input)``;
 
+export const FormInputWide = styled(Input)`
+  width: 100%;
+`;
+
 export const FormInputFile = styled(Input)`
   display: none;
 `;

@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormControl,
   FormInput,
+  FormInputWide,
   FormErrors,
   FormButton,
 } from '../../../base-ui/form';
@@ -40,10 +41,6 @@ const FormLabelNested = styled(FormLabel)`
   margin-right: 1ch;
   white-space: nowrap;
   color: rgba(0, 0, 0, 0.84);
-`;
-
-const FormInputWide = styled(FormInput)`
-  width: 100%;
 `;
 
 const AdminEditForm: React.FC = () => {

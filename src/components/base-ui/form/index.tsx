@@ -21,8 +21,19 @@ export const FormLabel = styled.label`
   color: #5B5B5B;
 `;
 
+export const FormLabelFile = styled.label`
+  color: #0066b3;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+`;
+
 export const FormControl = styled.div`
-  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 export const FormErrors = styled.span`
@@ -31,6 +42,10 @@ export const FormErrors = styled.span`
 `;
 
 export const FormInput = styled(Input)``;
+
+export const FormInputFile = styled(Input)`
+  display: none;
+`;
 
 export const FormButton = styled(Button)`
   padding: 0.75rem 2rem;

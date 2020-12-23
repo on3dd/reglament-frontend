@@ -1,7 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, HTMLProps } from 'react';
 import styled from 'styled-components';
 
-type BaseContainerProps = {};
+type BaseContainerProps = PropsWithChildren<
+  HTMLProps<HTMLDivElement> & {}
+>;
 
 const Container = styled.div`
   width: 100%;
@@ -9,10 +11,11 @@ const Container = styled.div`
   max-width: 1200px !important;
 `;
 
-const BaseContainer: React.FC<PropsWithChildren<BaseContainerProps>> = ({
+const BaseContainer: React.FC<BaseContainerProps> = ({
   children,
-}) => {
-  return <Container className="container">{children}</Container>;
+  className,
+}: BaseContainerProps) => {
+  return <Container className={className}>{children}</Container>;
 };
 
 export default BaseContainer;

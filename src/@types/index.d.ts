@@ -2,6 +2,12 @@ declare module '@reglament' {
   export interface Icons {
     mail: string;
     phone: string;
+    eye: string;
+    font: string;
+    font_inc: string;
+    font_dec: string;
+    interval_inc: string;
+    interval_dec: string;
   }
 
   export type Icon = keyof Icons;

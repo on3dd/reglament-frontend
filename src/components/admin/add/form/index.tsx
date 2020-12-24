@@ -1,8 +1,16 @@
-import React, { useEffect, useCallback, ChangeEvent } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useCallback,
+  ChangeEvent,
+} from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import { DocumentDraft } from '@reglament';
+
+import { useDocumentStore } from '../../../../store/document';
 
 import { DOCUMENT_TYPES as items } from '../../../../utils/constants';
 
@@ -18,6 +26,7 @@ import {
   FormSelect,
   FormErrors,
   FormButton,
+  FormDivider,
 } from '../../../base-ui/form';
 
 const FormControlNested = styled.div`
@@ -38,7 +47,9 @@ const defaultValuesFactory = (): DocumentDraft => ({
   name: '',
 });
 
-const AdminAddForm: React.FC = () => {
+const AdminAddForm: React.FC = observer(() => {
+  const { store } = useDocumentStore();
+
   const { control, errors, register, handleSubmit, setValue } = useForm({
     defaultValues: defaultValuesFactory(),
   });
@@ -47,6 +58,10 @@ const AdminAddForm: React.FC = () => {
   useEffect(() => {
     register({ name: 'file' }, { required: true });
   }, [register]);
+
+  const disabled = useMemo(() => {
+    return store.fetching;
+  }, [store.fetching]);
 
   const onFileChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,9 +74,14 @@ const AdminAddForm: React.FC = () => {
     [setValue],
   );
 
-  const onSubmit = useCallback((data: any) => {
-    console.log('submit data:', data);
-  }, []);
+  const onSubmit = useCallback(
+    async (data: DocumentDraft) => {
+      console.log('data:', data);
+
+      await store.createDocument(data);
+    },
+    [store],
+  );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -224,13 +244,15 @@ const AdminAddForm: React.FC = () => {
       </FormGroup>
 
       <FormGroup>
-        <FormLabel />
+        <FormDivider />
         <FormControl>
-          <FormButton type="submit">Добавить документ</FormButton>
+          <FormButton disabled={disabled} type="submit">
+            Добавить документ
+          </FormButton>
         </FormControl>
       </FormGroup>
     </Form>
   );
-};
+});
 
 export default AdminAddForm;

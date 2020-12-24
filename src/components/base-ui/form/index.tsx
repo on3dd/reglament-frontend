@@ -15,6 +15,8 @@ export const FormGroup = styled.div`
   grid-template-columns: 150px 1fr;
 `;
 
+export const FormDivider = styled.div``;
+
 export const FormLabel = styled(Label)`
   color: #5b5b5b;
 `;

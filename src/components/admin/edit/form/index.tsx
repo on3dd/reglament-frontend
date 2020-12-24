@@ -11,6 +11,7 @@ import {
   FormInputWide,
   FormErrors,
   FormButton,
+  FormDivider,
 } from '../../../base-ui/form';
 
 const notLastOfType = css`
@@ -205,7 +206,7 @@ const AdminEditForm: React.FC = () => {
       </FormGroup>
 
       <FormGroup>
-        <FormLabel />
+        <FormDivider />
         <FormControl>
           <FormButton type="submit">Добавить документ</FormButton>
         </FormControl>

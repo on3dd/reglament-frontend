@@ -35,7 +35,7 @@ declare module '@reglament' {
 
   export interface DocumentModel {
     id: number;
-    type: string;
+    type: SelectItem;
     name: string;
     date: string;
     agency: string;
@@ -43,6 +43,8 @@ declare module '@reglament' {
     create_date: string;
     file?: string | Blob | File;
   }
+
+  export type Document = DocumentModel | null;
 
   export interface ReglamentThemes {
     dark: Theme;

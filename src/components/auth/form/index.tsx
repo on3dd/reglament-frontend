@@ -14,6 +14,7 @@ import {
   FormInput,
   FormErrors,
   FormButton,
+  FormDivider,
 } from '../../base-ui/form';
 
 const defaultValueFactory = () => ({
@@ -85,7 +86,7 @@ const AuthForm: React.FC = observer(() => {
       />
 
       <FormGroup>
-        <FormLabel />
+        <FormDivider />
         <FormControl>
           <FormButton disabled={disabled} type="submit">
             Войти

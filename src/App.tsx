@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import { Theme, ReglamentTheme } from '@reglament';
 
+import { useThemeStore } from './store/theme';
+
 import { ThemeProvider } from './utils/contexts/ThemeContext';
-import { THEMES } from './utils/constants';
 import GlobalStyle from './utils/globalStyle';
 
 import RootComponent from './components/base-ui/root';
@@ -32,25 +34,18 @@ const AppContainer = styled.div`
 
 type AppProps = RouteConfigComponentProps<{}>;
 
-const App: React.FC<AppProps> = ({ route }: AppProps) => {
-  const [theme, setTheme] = useState(THEMES.light as Theme);
+const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
+  const { store } = useThemeStore();
+
+  const theme = useMemo(() => {
+    return store.theme;
+  }, [store.theme]);
 
   const changeTheme = useCallback(
     (theme: ReglamentTheme) => {
-      console.log('changeTheme', theme);
-
-      switch (theme) {
-        case 'light':
-          return setTheme(() => THEMES.light);
-
-        case 'dark':
-          return setTheme(() => THEMES.dark);
-
-        default:
-          return setTheme(() => THEMES.sepia);
-      }
+      store.changeTheme(theme);
     },
-    [setTheme],
+    [store],
   );
 
   return (
@@ -62,6 +57,6 @@ const App: React.FC<AppProps> = ({ route }: AppProps) => {
       </AppContainer>
     </ThemeProvider>
   );
-};
+});
 
 export default App;

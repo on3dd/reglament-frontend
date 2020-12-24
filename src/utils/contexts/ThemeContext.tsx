@@ -14,7 +14,7 @@ type ThemeProviderProps = PropsWithChildren<{
   changeTheme: (theme: ReglamentTheme) => void;
 }>;
 
-export const ThemeProvider = ({
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme,
   children,
   changeTheme,

@@ -31,13 +31,13 @@ const BaseThemeSwitch: React.FC = () => {
 
   return (
     <ThemeSwitchContainer>
-      {visible === false ? (
+      {visible ? (
+        <ThemeSwitchSwitcher onClick={onSwitcherClick} />
+      ) : (
         <ThemeSwitchBody
           onThemeChange={onThemeChange}
           onSwitcherClick={onSwitcherClick}
         />
-      ) : (
-        <ThemeSwitchSwitcher onClick={onSwitcherClick} />
       )}
     </ThemeSwitchContainer>
   );

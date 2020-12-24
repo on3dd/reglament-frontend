@@ -53,13 +53,13 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = ({
             <ThemeSwitchBodyButton
               name="font_white"
               scheme="black"
-              onClick={() => onThemeChange('light')}
+              onClick={() => onThemeChange('dark')}
             />
 
             <ThemeSwitchBodyButton
               name="font_black"
               scheme="white"
-              onClick={() => onThemeChange('dark')}
+              onClick={() => onThemeChange('light')}
             />
 
             <ThemeSwitchBodyButton

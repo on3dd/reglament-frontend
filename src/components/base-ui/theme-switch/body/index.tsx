@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { ReglamentTheme } from '@reglament';
+
 import Container from '../../container';
 import ThemeSwitchBodyItem from './item';
 import ThemeSwitchBodyClose from './close';
 import ThemeSwitchBodyButton from './button';
 
 type ThemeSwitchBodyProps = {
-  onClick: (...args: any[]) => void;
+  onSwitcherClick: (...args: any[]) => void;
+  onThemeChange: (theme: ReglamentTheme) => void;
 };
 
 const BodyContainer = styled.div`
@@ -29,7 +32,8 @@ const ThemeSwitchBodyGroup = styled.div`
 `;
 
 const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = ({
-  onClick,
+  onThemeChange,
+  onSwitcherClick,
 }: ThemeSwitchBodyProps) => {
   return (
     <BodyContainer>
@@ -46,13 +50,27 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = ({
           </ThemeSwitchBodyItem>
 
           <ThemeSwitchBodyItem heading="Цвета">
-            <ThemeSwitchBodyButton name="font_white" scheme="black" />
-            <ThemeSwitchBodyButton name="font_black" scheme="white" />
-            <ThemeSwitchBodyButton name="font_sepia" scheme="sepia" />
+            <ThemeSwitchBodyButton
+              name="font_white"
+              scheme="black"
+              onClick={() => onThemeChange('light')}
+            />
+
+            <ThemeSwitchBodyButton
+              name="font_black"
+              scheme="white"
+              onClick={() => onThemeChange('dark')}
+            />
+
+            <ThemeSwitchBodyButton
+              name="font_sepia"
+              scheme="sepia"
+              onClick={() => onThemeChange('sepia')}
+            />
           </ThemeSwitchBodyItem>
         </ThemeSwitchBodyGroup>
 
-        <ThemeSwitchBodyClose onClick={onClick} />
+        <ThemeSwitchBodyClose onClick={onSwitcherClick} />
       </StyledContainer>
     </BodyContainer>
   );

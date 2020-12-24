@@ -1,6 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
+import { ReglamentTheme } from '@reglament';
+
+import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
 import ThemeSwitchBody from './body';
 import ThemeSwitchSwitcher from './switcher';
 
@@ -11,18 +15,29 @@ const ThemeSwitchContainer = styled.div`
 `;
 
 const BaseThemeSwitch: React.FC = () => {
+  const { changeTheme } = useThemeContext();
   const [visible, setVisible] = useState(true);
 
-  const onClick = useCallback(() => {
-    setVisible((prev) => !prev);
+  const onSwitcherClick = useCallback(() => {
+    return setVisible((prev) => !prev);
   }, [setVisible]);
+
+  const onThemeChange = useCallback(
+    (theme: ReglamentTheme) => {
+      return changeTheme(theme);
+    },
+    [changeTheme],
+  );
 
   return (
     <ThemeSwitchContainer>
       {visible === false ? (
-        <ThemeSwitchBody onClick={onClick} />
+        <ThemeSwitchBody
+          onThemeChange={onThemeChange}
+          onSwitcherClick={onSwitcherClick}
+        />
       ) : (
-        <ThemeSwitchSwitcher onClick={onClick} />
+        <ThemeSwitchSwitcher onClick={onSwitcherClick} />
       )}
     </ThemeSwitchContainer>
   );

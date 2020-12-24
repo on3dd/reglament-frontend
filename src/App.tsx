@@ -40,8 +40,14 @@ const App: React.FC<AppProps> = ({ route }: AppProps) => {
       console.log('changeTheme', theme);
 
       switch (theme) {
+        case 'light':
+          return setTheme(() => THEMES.light);
+
+        case 'dark':
+          return setTheme(() => THEMES.dark);
+
         default:
-          setTheme(() => THEMES.light);
+          return setTheme(() => THEMES.sepia);
       }
     },
     [setTheme],

@@ -16,7 +16,7 @@ const ThemeSwitchContainer = styled.div`
 
 const BaseThemeSwitch: React.FC = () => {
   const { changeTheme } = useThemeContext();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const onSwitcherClick = useCallback(() => {
     return setVisible((prev) => !prev);
@@ -31,14 +31,15 @@ const BaseThemeSwitch: React.FC = () => {
 
   return (
     <ThemeSwitchContainer>
-      {visible ? (
+      {visible === false && (
         <ThemeSwitchSwitcher onClick={onSwitcherClick} />
-      ) : (
-        <ThemeSwitchBody
-          onThemeChange={onThemeChange}
-          onSwitcherClick={onSwitcherClick}
-        />
       )}
+
+      <ThemeSwitchBody
+        visible={visible}
+        onThemeChange={onThemeChange}
+        onSwitcherClick={onSwitcherClick}
+      />
     </ThemeSwitchContainer>
   );
 };

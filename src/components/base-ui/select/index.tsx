@@ -14,14 +14,11 @@ const Select = styled.select`
   padding: 0.25rem;
   border: 0.5px solid #acacac;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 const BaseSelect: React.FC<BaseSelectProps> = forwardRef(
   (props, _: BaseSelectProps) => {
-    console.log('====================================');
-    console.log('props', props);
-    console.log('items', props.items);
-    console.log('====================================');
     return (
       <Select {...props}>
         {props.items.map((el: SelectItem) => (

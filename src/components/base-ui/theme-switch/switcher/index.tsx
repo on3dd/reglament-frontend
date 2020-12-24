@@ -25,14 +25,14 @@ const ThemeSwitchButton = styled.button`
   &:hover,
   &:focus,
   &:active {
-    filter: brightness(0%);
+    filter: brightness(50%);
   }
 `;
 
 const ThemeSwitchIcon = styled(Icon)`
   width: 3rem;
   height: 2rem;
-  transition: all 0.1s ease-out;
+  transition: color 0.1s ease-out;
 `;
 
 const ThemeSwitchSwitcher: React.FC<ThemeSwitchSwitcherProps> = ({

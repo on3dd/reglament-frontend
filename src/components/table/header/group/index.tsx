@@ -5,6 +5,8 @@ import { PropsWithTheme } from '@reglament';
 
 import { useThemeContext } from '../../../../utils/contexts/ThemeContext';
 
+import Label from '../../../base-ui/label';
+
 type TableHeaderGroupProps = PropsWithChildren<{
   id: string;
   label: string;
@@ -18,10 +20,9 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const InputLabel = styled.label`
+const InputLabel = styled(Label)`
   margin-right: 1ch;
   white-space: nowrap;
-  text-transform: lowercase;
 
   color: ${({ theme }: InputLabelProps) => {
     return theme.fontColorAlt;

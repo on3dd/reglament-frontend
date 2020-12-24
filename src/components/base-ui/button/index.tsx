@@ -18,6 +18,7 @@ const Button = styled.button`
 
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 
   color: ${({ theme }: ButtonProps) => theme.fontColorNeg};
   background-color: ${({ theme }: ButtonProps) => theme.buttonColor};

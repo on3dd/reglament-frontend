@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { lowercase } from '../mixins';
-
+import Label from '../label';
 import Input from '../input';
 import Button from '../button';
 
@@ -15,15 +14,12 @@ export const FormGroup = styled.div`
   grid-template-columns: 150px 1fr;
 `;
 
-export const FormLabel = styled.label`
-  ${lowercase}
-
-  color: #5B5B5B;
+export const FormLabel = styled(Label)`
+  color: #5b5b5b;
 `;
 
 export const FormLabelFile = styled.label`
   color: #0066b3;
-  cursor: pointer;
 
   &:hover,
   &:active {

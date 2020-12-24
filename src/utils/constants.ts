@@ -1,5 +1,13 @@
 import { Icons, ReglamentThemes } from '@reglament';
 
+export const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
+
+export const API_ENDPOINTS = {
+  auth: '/auth',
+};
+
+export const API_PARAMS = {};
+
 export const COLORS = {
   black: 'rgba(0, 0, 0, 1)',
   white: 'rgba(255, 255, 255, 1)',

@@ -22,7 +22,7 @@ declare module '@reglament' {
     | 'checkbox'
     | 'date';
 
-  export interface Document {
+  export interface DocumentModel {
     id: number;
     type: string;
     name: string;
@@ -49,6 +49,8 @@ declare module '@reglament' {
     primaryColor: string;
     secondaryColor: string;
     backgroundColor: string;
+    fontColorDis: string;
+    buttonColorDis: string;
   }
 
   export type PropsWithTheme<T> = T & { theme: Theme };
@@ -57,4 +59,11 @@ declare module '@reglament' {
     text: string;
     value: any;
   }
+
+  export interface UserModel {
+    login: string;
+    password: string;
+  }
+
+  export type User = UserModel | null;
 }

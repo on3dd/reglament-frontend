@@ -1,5 +1,10 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useMemo, useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
+
+import { UserModel } from '@reglament';
+
+import { useAuthStore } from '../../../store/auth';
 
 import {
   Form,
@@ -11,54 +16,84 @@ import {
   FormButton,
 } from '../../base-ui/form';
 
-const AuthForm: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm();
+const defaultValueFactory = () => ({
+  login: '',
+  password: '',
+});
 
-  const onSubmit = (data: any) => {
-    console.log('data:', data);
-  };
+const AuthForm: React.FC = observer(() => {
+  const { store } = useAuthStore();
+
+  const { control, errors, handleSubmit } = useForm({
+    defaultValues: defaultValueFactory(),
+  });
+
+  const disabled = useMemo(() => {
+    return store.fetching;
+  }, [store.fetching]);
+
+  const onSubmit = useCallback(
+    async (data: UserModel) => {
+      console.log('data:', data);
+
+      await store.login(data);
+    },
+    [store],
+  );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup>
-        <FormLabel htmlFor="login">Логин</FormLabel>
-        <FormControl>
-          <FormInput
-            id="login"
-            name="login"
-            ref={register({ required: true })}
-          />
+      <Controller
+        name="login"
+        control={control}
+        rules={{ required: true }}
+        render={({ value, onChange }) => (
+          <FormGroup>
+            <FormLabel htmlFor="login">Логин</FormLabel>
+            <FormControl>
+              <FormInput id="login" value={value} onChange={onChange} />
 
-          {errors.login && (
-            <FormErrors>Пожалуйста, введите ваш логин.</FormErrors>
-          )}
-        </FormControl>
-      </FormGroup>
+              {errors.login && (
+                <FormErrors>Пожалуйста, введите ваш логин.</FormErrors>
+              )}
+            </FormControl>
+          </FormGroup>
+        )}
+      />
 
-      <FormGroup>
-        <FormLabel htmlFor="password">Пароль</FormLabel>
-        <FormControl>
-          <FormInput
-            id="password"
-            name="password"
-            type="password"
-            ref={register({ required: true })}
-          />
+      <Controller
+        name="password"
+        control={control}
+        rules={{ required: true }}
+        render={({ value, onChange }) => (
+          <FormGroup>
+            <FormLabel htmlFor="password">Пароль</FormLabel>
+            <FormControl>
+              <FormInput
+                id="password"
+                type="password"
+                value={value}
+                onChange={onChange}
+              />
 
-          {errors.password && (
-            <FormErrors>Пожалуйста, введите ваш пароль.</FormErrors>
-          )}
-        </FormControl>
-      </FormGroup>
+              {errors.password && (
+                <FormErrors>Пожалуйста, введите ваш пароль.</FormErrors>
+              )}
+            </FormControl>
+          </FormGroup>
+        )}
+      />
 
       <FormGroup>
         <FormLabel />
         <FormControl>
-          <FormButton type="submit">Войти</FormButton>
+          <FormButton disabled={disabled} type="submit">
+            Войти
+          </FormButton>
         </FormControl>
       </FormGroup>
     </Form>
   );
-};
+});
 
 export default AuthForm;

@@ -1,8 +1,8 @@
 import { Column } from 'react-table';
 
-import { Document } from '@reglament';
+import { DocumentModel } from '@reglament';
 
-export const data: Document[] = [
+export const data: DocumentModel[] = [
   {
     id: 5458,
     type: 'Постановление',
@@ -205,7 +205,7 @@ export const data: Document[] = [
   },
 ];
 
-export const columns: Column<Document>[] = [
+export const columns: Column<DocumentModel>[] = [
   {
     Header: '№',
     accessor: 'id',

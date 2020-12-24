@@ -2,10 +2,10 @@ import React from 'react';
 import { TableInstance } from 'react-table';
 import styled, { css } from 'styled-components';
 
-import { Document, PropsWithTheme } from '@reglament';
+import { DocumentModel, PropsWithTheme } from '@reglament';
 
 type TableBodyTableProps = {
-  instance: TableInstance<Document>;
+  instance: TableInstance<DocumentModel>;
 };
 
 const border = css`

@@ -18,7 +18,9 @@ const store = new ThemeStore();
 
 type ThemeStateProviderProps = PropsWithChildren<{}>;
 
-export const ThemeStateProvider: React.FC<ThemeStateProviderProps> = ({ children }) => (
+export const ThemeStateProvider: React.FC<ThemeStateProviderProps> = ({
+  children,
+}) => (
   <ThemeStateContext.Provider value={{ store }}>
     {children}
   </ThemeStateContext.Provider>

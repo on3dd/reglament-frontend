@@ -12,6 +12,8 @@ export const COLORS = {
   black: 'rgba(0, 0, 0, 1)',
   white: 'rgba(255, 255, 255, 1)',
   gray: 'rgba(91, 91, 91, 1)',
+  disabledTxt: 'rgba(189, 195, 199,1.0)',
+  disabledBtn: 'rgba(149, 165, 166,1.0)',
   cloud: 'rgba(229, 229, 229, 1)',
   blue: 'rgba(0, 102, 179, 1)',
   brown: 'rgba(56, 40, 25, 1)',
@@ -28,6 +30,8 @@ export const THEMES: ReglamentThemes = {
     primaryColor: COLORS.blue,
     secondaryColor: COLORS.cloud,
     backgroundColor: COLORS.white,
+    fontColorDis: COLORS.disabledTxt,
+    buttonColorDis: COLORS.disabledBtn,
   },
 
   dark: {
@@ -39,6 +43,8 @@ export const THEMES: ReglamentThemes = {
     primaryColor: COLORS.white,
     secondaryColor: COLORS.white,
     backgroundColor: COLORS.black,
+    fontColorDis: COLORS.disabledTxt,
+    buttonColorDis: COLORS.disabledBtn,
   },
 
   sepia: {
@@ -50,6 +56,8 @@ export const THEMES: ReglamentThemes = {
     primaryColor: COLORS.green,
     secondaryColor: COLORS.white,
     backgroundColor: COLORS.brown,
+    fontColorDis: COLORS.disabledTxt,
+    buttonColorDis: COLORS.disabledBtn,
   },
 };
 

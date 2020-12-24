@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+
+import { useSiteInfoStore } from '../../../../../store/site-info';
 
 import ContactsContactUsItem from './Item';
 
@@ -10,18 +13,23 @@ const ContactsContactUs = styled.ul`
   list-style: none;
 `;
 
-const NavbarContactsContactUs: React.FC = () => {
+const NavbarContactsContactUs: React.FC = observer(() => {
+  const { store } = useSiteInfoStore();
+
+  const email = useMemo(() => {
+    return `${store.info.email} - электронная почта`;
+  }, [store.info.email]);
+
+  const phone = useMemo(() => {
+    return `${store.info.number} - ${store.info.number_name}`;
+  }, [store.info.number, store.info.number_name]);
+
   return (
     <ContactsContactUs>
-      <ContactsContactUsItem icon="mail">
-        admartm@mail.primorye.ru - электронная почта
-      </ContactsContactUsItem>
-
-      <ContactsContactUsItem icon="phone">
-        8 (42337) 4-94-90 - справочная служба
-      </ContactsContactUsItem>
+      <ContactsContactUsItem icon="mail">{email}</ContactsContactUsItem>
+      <ContactsContactUsItem icon="phone">{phone}</ContactsContactUsItem>
     </ContactsContactUs>
   );
-};
+});
 
 export default NavbarContactsContactUs;

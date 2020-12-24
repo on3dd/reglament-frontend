@@ -1,30 +1,58 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
-import { SiteInfo, SiteInfoModel } from '@reglament';
+import { SiteInfoModel } from '@reglament';
 
-import { mockUpdateSiteInfo } from '../../mocks/site-info';
+import {
+  mockFetchSiteInfo,
+  mockUpdateSiteInfo,
+} from '../../mocks/site-info';
 
 export default class SiteInfoStore {
-  document: SiteInfo = null;
+  info: SiteInfoModel = {
+    email: '',
+    number: '',
+    number_name: '',
+    address: '',
+    reg_num: '',
+    date: '',
+    reg_author: '',
+    boss: '',
+  };
+
   fetching: boolean = false;
 
   constructor() {
     makeObservable(this, {
-      document: observable,
+      info: observable,
       fetching: observable,
+      fetchSiteInfo: action,
       updateSiteInfo: action,
     });
+  }
+
+  async fetchSiteInfo() {
+    this.toggleFetching();
+
+    const info = await mockFetchSiteInfo();
+
+    runInAction(() => {
+      this.info = info;
+
+      console.log('fetchSiteInfo this.info', this.info);
+    });
+
+    this.toggleFetching();
   }
 
   async updateSiteInfo(data: SiteInfoModel) {
     this.toggleFetching();
 
-    const document = await mockUpdateSiteInfo(data);
+    const info = await mockUpdateSiteInfo(data);
 
     runInAction(() => {
-      this.document = document;
+      this.info = info;
 
-      console.log('createSiteInfo this.document', this.document);
+      console.log('createSiteInfo this.info', this.info);
     });
 
     this.toggleFetching();

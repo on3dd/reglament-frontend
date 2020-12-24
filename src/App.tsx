@@ -1,11 +1,13 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
+import { autorun } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import { Theme, ReglamentTheme } from '@reglament';
 
 import { useThemeStore } from './store/theme';
+import { useSiteInfoStore } from './store/site-info';
 
 import { ThemeProvider } from './utils/contexts/ThemeContext';
 import GlobalStyle from './utils/globalStyle';
@@ -35,17 +37,24 @@ const AppContainer = styled.div`
 type AppProps = RouteConfigComponentProps<{}>;
 
 const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
-  const { store } = useThemeStore();
+  const { store: themeStore } = useThemeStore();
+  const { store: siteInfoStore } = useSiteInfoStore();
+
+  useEffect(() => {
+    autorun(() => {
+      siteInfoStore.fetchSiteInfo();
+    });
+  }, [siteInfoStore]);
 
   const theme = useMemo(() => {
-    return store.theme;
-  }, [store.theme]);
+    return themeStore.theme;
+  }, [themeStore.theme]);
 
   const changeTheme = useCallback(
     (theme: ReglamentTheme) => {
-      store.changeTheme(theme);
+      themeStore.changeTheme(theme);
     },
-    [store],
+    [themeStore],
   );
 
   return (

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
 import styled, { css } from 'styled-components';
@@ -48,24 +48,20 @@ const FormLabelNested = styled(FormLabel)`
   white-space: nowrap;
 `;
 
-const defaultValuesFactory = (): SiteInfoModel => ({
-  email: 'admartm@mail.primorye.ru',
-  number: '8 (42337) 4-94-90',
-  number_name:
-    'справочная служба администрации Артёмовского городского округа',
-  address: '692760, Приморский край, г.Артём, ул.Кирова, 48',
-  reg_num: '',
-  date: '',
-  reg_author: 'Роскомнадзор',
-  boss: 'Рабинович Элина Дмитриевна',
-});
+const defaultValuesFactory = (data: SiteInfoModel): SiteInfoModel => {
+  return data;
+};
 
 const AdminEditForm: React.FC = observer(() => {
   const { store } = useSiteInfoStore();
 
-  const { control, errors, handleSubmit } = useForm({
-    defaultValues: defaultValuesFactory(),
+  const { control, errors, reset, handleSubmit } = useForm({
+    defaultValues: defaultValuesFactory(store.info),
   });
+
+  useEffect(() => {
+    reset({ ...defaultValuesFactory(store.info) });
+  }, [reset, store.info]);
 
   const disabled = useMemo(() => {
     return store.fetching;

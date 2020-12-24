@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import { PropsWithTheme } from '@reglament';
+
+import { useSiteInfoStore } from '../../../store/site-info';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 
@@ -42,8 +45,25 @@ const FooterAgeLimit = styled.span`
   font-weight: 600;
 `;
 
-const BaseFooter: React.FC = () => {
+const BaseFooter: React.FC = observer(() => {
+  const { store } = useSiteInfoStore();
   const { theme } = useThemeContext();
+
+  const reg_num = useMemo(() => {
+    return store.info.reg_num ? store.info.reg_num : '………';
+  }, [store.info.reg_num]);
+
+  const date = useMemo(() => {
+    return store.info.date ? store.info.date : '………';
+  }, [store.info.date]);
+
+  const reg_author = useMemo(() => {
+    return store.info.reg_author ? store.info.reg_author : '……';
+  }, [store.info.reg_author]);
+
+  const boss = useMemo(() => {
+    return store.info.boss ? store.info.boss : '……';
+  }, [store.info.boss]);
 
   return (
     <FooterContainer theme={theme} className="footer">
@@ -53,15 +73,15 @@ const BaseFooter: React.FC = () => {
             Сетевое издание «Официальный сайт правовой информации
             Артёмовского городского округа» Учредитель : Администрация
             Артёмовского городского округа Запись о регистрации СМИ: Эл №
-            ………. от ……, выдано Федеральной службой по надзору в сфере
-            связи, информационных технологий и массовых коммуникаций
-            (Роскомнадзор) Главный редактор : Рабинович Элина Дмитриевна
+            {reg_num} от {date}, выдано Федеральной службой по надзору
+            в сфере связи, информационных технологий и массовых
+            коммуникаций ({reg_author}) Главный редактор : {boss}
           </FooterText>
           <FooterAgeLimit>12+</FooterAgeLimit>
         </FooterContent>
       </Container>
     </FooterContainer>
   );
-};
+});
 
 export default BaseFooter;

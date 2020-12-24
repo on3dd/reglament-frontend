@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+
+import { useSiteInfoStore } from '../../../store/site-info';
 
 import Container from '../../base-ui/container';
 import NavbarBrand from './brand';
@@ -19,17 +22,24 @@ const NavbarRow = styled.nav`
   justify-content: space-between;
 `;
 
-const BaseNavbar: React.FC = () => {
+const BaseNavbar: React.FC = observer(() => {
+  const { store } = useSiteInfoStore();
+
+  const visible = useMemo(() => {
+    return !store.fetching && store.info.address;
+  }, [store.fetching, store.info.address]);
+
   return (
     <NavbarContainer className="navbar">
       <Container>
         <NavbarRow className="navbar__row">
           <NavbarBrand />
-          <NavbarContacts />
+
+          {visible && <NavbarContacts />}
         </NavbarRow>
       </Container>
     </NavbarContainer>
   );
-};
+});
 
 export default BaseNavbar;

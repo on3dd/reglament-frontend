@@ -1,9 +1,10 @@
-import React, { useMemo, useCallback, ChangeEvent } from 'react';
+import React, { useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-import { PropsWithTheme, SelectItem } from '@reglament';
+import { PropsWithTheme } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+import { DOCUMENT_TYPES as items } from '../../../utils/constants';
 
 import Button from '../../base-ui/button';
 
@@ -37,14 +38,6 @@ const TableHeaderButton = styled(Button)``;
 const TableHeader: React.FC = () => {
   const { theme } = useThemeContext();
 
-  const items = useMemo((): SelectItem[] => {
-    return [
-      { text: 'Постановление', value: 'Постановление' },
-      { text: 'Приказ', value: 'Приказ' },
-      { text: 'Договор', value: 'Договор' },
-    ];
-  }, []);
-
   const onChange = useCallback((evt: ChangeEvent) => {
     console.log('evt.target', evt.target);
   }, []);
@@ -65,7 +58,7 @@ const TableHeader: React.FC = () => {
           id="document__type"
           name="document__type"
           items={items}
-          value={items[0].value}
+          value={items[0].toString()}
           onChange={onChange}
         />
       </TableHeaderGroup>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Label from '../label';
 import Input from '../input';
+import Select from '../select';
 import Button from '../button';
 
 export const Form = styled.form`
@@ -33,8 +34,9 @@ export const FormControl = styled.div`
 `;
 
 export const FormErrors = styled.span`
-  margin: 1rem 0 0 1rem;
+  margin: 0 0 0 1rem;
   color: #e74c3c;
+  white-space: nowrap;
 `;
 
 export const FormInput = styled(Input)``;
@@ -46,6 +48,8 @@ export const FormInputWide = styled(Input)`
 export const FormInputFile = styled(Input)`
   display: none;
 `;
+
+export const FormSelect = styled(Select)``;
 
 export const FormButton = styled(Button)`
   padding: 0.75rem 2rem;

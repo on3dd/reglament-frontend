@@ -1,4 +1,6 @@
 declare module '@reglament' {
+  import { ReactText } from 'react';
+
   export interface Icons {
     eye: string;
     mail: string;
@@ -22,6 +24,15 @@ declare module '@reglament' {
     | 'checkbox'
     | 'date';
 
+  export interface DocumentDraft {
+    type: SelectItem;
+    name: string;
+    date: string;
+    agency: string;
+    number: string;
+    file?: string | Blob | File;
+  }
+
   export interface DocumentModel {
     id: number;
     type: string;
@@ -30,6 +41,7 @@ declare module '@reglament' {
     agency: string;
     number: string;
     create_date: string;
+    file?: string | Blob | File;
   }
 
   export interface ReglamentThemes {
@@ -55,10 +67,7 @@ declare module '@reglament' {
 
   export type PropsWithTheme<T> = T & { theme: Theme };
 
-  export interface SelectItem {
-    text: string;
-    value: any;
-  }
+  export type SelectItem = ReactText;
 
   export interface UserModel {
     login: string;

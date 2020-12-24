@@ -1,4 +1,4 @@
-import { Icons, ReglamentThemes } from '@reglament';
+import { Icons, ReglamentThemes, SelectItem } from '@reglament';
 
 export const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
@@ -82,3 +82,9 @@ export const ICONS: Icons = {
   interval_inc: require('../assets/icons/interval_inc.svg').default,
   interval_dec: require('../assets/icons/interval_dec.svg').default,
 };
+
+export const DOCUMENT_TYPES: SelectItem[] = [
+  'Постановление',
+  'Приказ',
+  'Договор',
+];

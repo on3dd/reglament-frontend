@@ -22,8 +22,8 @@ const BaseSelect: React.FC<BaseSelectProps> = forwardRef(
     return (
       <Select {...props}>
         {props.items.map((el: SelectItem) => (
-          <option key={el.value} value={el.value}>
-            {el.text}
+          <option key={el} value={el}>
+            {el}
           </option>
         ))}
       </Select>

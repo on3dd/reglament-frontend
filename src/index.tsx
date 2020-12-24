@@ -6,6 +6,7 @@ import { renderRoutes } from 'react-router-config';
 import { AuthStateProvider } from './store/auth';
 import { ThemeStateProvider } from './store/theme';
 import { DocumentStateProvider } from './store/document';
+import { SiteInfoStateProvider } from './store/site-info';
 
 import routes from './router';
 
@@ -14,7 +15,9 @@ ReactDOM.render(
     <ThemeStateProvider>
       <AuthStateProvider>
         <DocumentStateProvider>
-          <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+          <SiteInfoStateProvider>
+            <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+          </SiteInfoStateProvider>
         </DocumentStateProvider>
       </AuthStateProvider>
     </ThemeStateProvider>

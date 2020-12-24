@@ -77,4 +77,17 @@ declare module '@reglament' {
   }
 
   export type User = UserModel | null;
+
+  export interface SiteInfoModel {
+    email: string;
+    number: string;
+    number_name: string;
+    address: string;
+    reg_num: string;
+    date: string;
+    reg_author: string;
+    boss: string;
+  }
+
+  export type SiteInfo = SiteInfoModel | null;
 }

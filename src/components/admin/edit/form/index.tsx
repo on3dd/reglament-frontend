@@ -1,6 +1,11 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useMemo, useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
 import styled, { css } from 'styled-components';
+
+import { SiteInfoModel } from '@reglament';
+
+import { useSiteInfoStore } from '../../../../store/site-info';
 
 import {
   Form,
@@ -43,65 +48,104 @@ const FormLabelNested = styled(FormLabel)`
   white-space: nowrap;
 `;
 
-const AdminEditForm: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm();
+const defaultValuesFactory = (): SiteInfoModel => ({
+  email: 'admartm@mail.primorye.ru',
+  number: '8 (42337) 4-94-90',
+  number_name:
+    'справочная служба администрации Артёмовского городского округа',
+  address: '692760, Приморский край, г.Артём, ул.Кирова, 48',
+  reg_num: '',
+  date: '',
+  reg_author: 'Роскомнадзор',
+  boss: 'Рабинович Элина Дмитриевна',
+});
 
-  const onSubmit = (data: any) => {
-    console.log('submit data:', data);
-  };
+const AdminEditForm: React.FC = observer(() => {
+  const { store } = useSiteInfoStore();
 
-  const onChange = (data: any) => {
-    console.log('change data:', data);
-  };
+  const { control, errors, handleSubmit } = useForm({
+    defaultValues: defaultValuesFactory(),
+  });
+
+  const disabled = useMemo(() => {
+    return store.fetching;
+  }, [store.fetching]);
+
+  const onSubmit = useCallback(
+    async (data: SiteInfoModel) => {
+      console.log('data:', data);
+
+      await store.updateSiteInfo(data);
+    },
+    [store],
+  );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup>
-        <FormLabel htmlFor="email">Электронная почта</FormLabel>
-        <FormControl>
-          <FormInput
-            id="email"
-            name="email"
-            type="email"
-            value="admartm@mail.primorye.ru"
-            onChange={onChange}
-            ref={register({ required: true })}
-          />
+      <Controller
+        name="email"
+        control={control}
+        rules={{ required: true }}
+        render={({ value, onChange }) => (
+          <FormGroup>
+            <FormLabel htmlFor="email">Электронная почта</FormLabel>
+            <FormControl>
+              <FormInput
+                id="email"
+                name="email"
+                type="email"
+                value={value}
+                onChange={onChange}
+              />
 
-          {errors.email && (
-            <FormErrors>
-              Пожалуйста, введите адрес электронной почты.
-            </FormErrors>
-          )}
-        </FormControl>
-      </FormGroup>
+              {errors.email && (
+                <FormErrors>
+                  Пожалуйста, введите адрес электронной почты.
+                </FormErrors>
+              )}
+            </FormControl>
+          </FormGroup>
+        )}
+      />
 
       <FormGroup>
-        <FormLabel htmlFor="phone">Контактный телефон</FormLabel>
+        <FormLabel htmlFor="number">Контактный телефон</FormLabel>
         <FormControlMultiple>
-          <FormInput
-            id="phone"
-            name="phone"
-            type="tel"
-            value="+7 (423) 374-94-90"
-            placeholder="+7 (000) 000-00-00"
-            onChange={onChange}
-            ref={register({ required: true })}
+          <Controller
+            name="number"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
+              <FormInput
+                id="number"
+                name="number"
+                type="tel"
+                value={value}
+                placeholder="+7 (000) 000-00-00"
+                onChange={onChange}
+              />
+            )}
           />
 
-          <FormInputWide
-            id="phone_title"
-            name="phone_title"
-            value="справочная служба администрации Артёмовского городского округа"
-            onChange={onChange}
-            ref={register({ required: true })}
-          />
-
-          {errors.phone && (
+          {errors.number && (
             <FormErrors>Пожалуйста, введите номер телефона.</FormErrors>
           )}
 
-          {errors.phone_title && (
+          <Controller
+            name="number_name"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
+              <FormInputWide
+                id="number_name"
+                name="number_name"
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+
+          {errors.number_name && (
             <FormErrors>
               Пожалуйста, введите заголовок для номера телефона.
             </FormErrors>
@@ -109,110 +153,148 @@ const AdminEditForm: React.FC = () => {
         </FormControlMultiple>
       </FormGroup>
 
-      <FormGroup>
-        <FormLabel htmlFor="address">Адрес редакции</FormLabel>
-        <FormControl>
-          <FormInputWide
-            id="address"
-            name="address"
-            value="692760, Приморский край, г.Артём, ул.Кирова, 48"
-            onChange={onChange}
-            ref={register({ required: true })}
-          />
+      <Controller
+        name="address"
+        control={control}
+        rules={{ required: true }}
+        render={({ value, onChange }) => (
+          <FormGroup>
+            <FormLabel htmlFor="address">Адрес редакции</FormLabel>
+            <FormControl>
+              <FormInputWide
+                id="address"
+                name="address"
+                value={value}
+                onChange={onChange}
+              />
 
-          {errors.address && (
-            <FormErrors>Пожалуйста, введите адрес редакции.</FormErrors>
-          )}
-        </FormControl>
-      </FormGroup>
+              {errors.address && (
+                <FormErrors>
+                  Пожалуйста, введите адрес редакции.
+                </FormErrors>
+              )}
+            </FormControl>
+          </FormGroup>
+        )}
+      />
 
       <FormGroup>
         <FormLabel htmlFor="number">Запись о регистрации</FormLabel>
         <FormControlMultiple>
-          <FormControlNested>
-            <FormLabelNested htmlFor="number">№</FormLabelNested>
+          <Controller
+            name="number"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
+              <FormControlNested>
+                <FormLabelNested htmlFor="number">№</FormLabelNested>
 
-            <FormInput
-              id="number"
-              name="number"
-              value="490-па"
-              onChange={onChange}
-              ref={register({ required: true })}
-            />
+                <FormInput
+                  id="number"
+                  name="number"
+                  value={value}
+                  onChange={onChange}
+                />
 
-            {errors.number && (
-              <FormErrors>Пожалуйста, введите номер документа.</FormErrors>
+                {errors.number && (
+                  <FormErrors>
+                    Пожалуйста, введите номер документа.
+                  </FormErrors>
+                )}
+              </FormControlNested>
             )}
-          </FormControlNested>
+          />
 
-          <FormControlNested>
-            <FormLabelNested htmlFor="date">Дата выдачи</FormLabelNested>
+          <Controller
+            name="date"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
+              <FormControlNested>
+                <FormLabelNested htmlFor="date">
+                  Дата выдачи
+                </FormLabelNested>
 
-            <FormInput
-              id="date"
-              name="date"
-              type="date"
-              value="1998-10-25"
-              onChange={onChange}
-              ref={register({ required: true })}
-            />
+                <FormInput
+                  id="date"
+                  name="date"
+                  type="date"
+                  value={value}
+                  onChange={onChange}
+                />
 
-            {errors.date && (
-              <FormErrors>
-                Пожалуйста, введите дату выдачи документа.
-              </FormErrors>
+                {errors.date && (
+                  <FormErrors>
+                    Пожалуйста, введите дату выдачи документа.
+                  </FormErrors>
+                )}
+              </FormControlNested>
             )}
-          </FormControlNested>
+          />
 
-          <FormControlNested>
-            <FormLabelNested htmlFor="issued_by">
-              Кем выдано
-            </FormLabelNested>
+          <Controller
+            name="reg_author"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
+              <FormControlNested>
+                <FormLabelNested htmlFor="issued_by">
+                  Кем выдано
+                </FormLabelNested>
 
-            <FormInput
-              id="issued_by"
-              name="issued_by"
-              value="Роскомнадзор"
-              onChange={onChange}
-              ref={register({ required: true })}
-            />
+                <FormInput
+                  id="reg_author"
+                  name="reg_author"
+                  value={value}
+                  onChange={onChange}
+                />
 
-            {errors.issued_by && (
-              <FormErrors>
-                Пожалуйста, введите орган, выдавший документ.
-              </FormErrors>
+                {errors.reg_author && (
+                  <FormErrors>
+                    Пожалуйста, введите орган, выдавший документ.
+                  </FormErrors>
+                )}
+              </FormControlNested>
             )}
-          </FormControlNested>
+          />
         </FormControlMultiple>
       </FormGroup>
 
-      <FormGroup>
-        <FormLabel htmlFor="editor">Главный редактор</FormLabel>
-        <FormControl>
-          <FormInputWide
-            id="editor"
-            name="editor"
-            value="Рабинович Элина Дмитриевна"
-            onChange={onChange}
-            ref={register({ required: true })}
-          />
+      <Controller
+        name="boss"
+        control={control}
+        rules={{ required: true }}
+        render={({ value, onChange }) => (
+          <FormGroup>
+            <FormLabel htmlFor="boss">Главный редактор</FormLabel>
+            <FormControl>
+              <FormInputWide
+                id="boss"
+                name="boss"
+                value={value}
+                onChange={onChange}
+              />
 
-          {errors.editor && (
-            <FormErrors>
-              Пожалуйста, введите ФИО главного редактора.
-            </FormErrors>
-          )}
-        </FormControl>
-      </FormGroup>
+              {errors.boss && (
+                <FormErrors>
+                  Пожалуйста, введите ФИО главного редактора.
+                </FormErrors>
+              )}
+            </FormControl>
+          </FormGroup>
+        )}
+      />
 
       <FormGroup>
         <FormDivider />
         <FormControl>
-          <FormButton type="submit">Добавить документ</FormButton>
+          <FormButton disabled={disabled} type="submit">
+            Добавить документ
+          </FormButton>
         </FormControl>
       </FormGroup>
     </Form>
   );
-};
+});
 
 export default AdminEditForm;

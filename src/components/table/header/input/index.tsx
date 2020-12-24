@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { InputType } from '@reglament';
 
-import Input from '../../../base-ui/input';
+import BaseInput from '../../../base-ui/input';
 
 type InputValue = string | number;
 
@@ -15,7 +15,7 @@ type TableHeaderInputProps = {
   onChange: (...args: any[]) => void;
 };
 
-const InputInput = styled(Input)`
+const Input = styled(BaseInput)`
   width: 100%;
   height: 100%;
 `;
@@ -40,7 +40,7 @@ const TableHeaderInput: React.FC<TableHeaderInputProps> = ({
   }, [checkbox, checked]);
 
   return (
-    <InputInput
+    <Input
       id={id}
       type={type}
       value={memoizedValue}

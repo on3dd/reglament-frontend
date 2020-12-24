@@ -1,7 +1,7 @@
-import React, { useCallback, ChangeEvent } from 'react';
+import React, { useMemo, useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-import { PropsWithTheme } from '@reglament';
+import { PropsWithTheme, SelectItem } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 
@@ -9,6 +9,7 @@ import Button from '../../base-ui/button';
 
 import TableHeaderGroup from './group';
 import TableHeaderInput from './input';
+import TableHeaderSelect from './select';
 
 type HeaderContainerProps = PropsWithTheme<{}>;
 
@@ -36,6 +37,14 @@ const TableHeaderButton = styled(Button)``;
 const TableHeader: React.FC = () => {
   const { theme } = useThemeContext();
 
+  const items = useMemo((): SelectItem[] => {
+    return [
+      { text: 'Постановление', value: 'Постановление' },
+      { text: 'Приказ', value: 'Приказ' },
+      { text: 'Договор', value: 'Договор' },
+    ];
+  }, []);
+
   const onChange = useCallback((evt: ChangeEvent) => {
     console.log('evt.target', evt.target);
   }, []);
@@ -52,10 +61,11 @@ const TableHeader: React.FC = () => {
       </TableHeaderGroup>
 
       <TableHeaderGroup id="document__type" label="Вид документа">
-        <TableHeaderInput
+        <TableHeaderSelect
           id="document__type"
-          type="text"
-          value="Постановление"
+          name="document__type"
+          items={items}
+          value={items[0].value}
           onChange={onChange}
         />
       </TableHeaderGroup>

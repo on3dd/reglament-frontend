@@ -52,4 +52,9 @@ declare module '@reglament' {
   }
 
   export type PropsWithTheme<T> = T & { theme: Theme };
+
+  export interface SelectItem {
+    text: string;
+    value: any;
+  }
 }

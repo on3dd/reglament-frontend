@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# [reglament frontend](https://github.com/on3dd/reglament-frontend)
+✒️ Front-end for Artyom's city administration website using TypeScript, React and Mobx (in progress 🚧)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## tech stack
+- typescript 4.1.3
+- react 17.0
+- mobx 6.0.4
+- mobx-react-lite 3.1.6
+- axios 0.21
+- react-table 7.6.2
+- react-hook-form 6.13
+- styled-components 5.2
 
-## Available Scripts
+## how to install
 
-In the project directory, you can run:
+### clone this repository
 
-### `npm start`
+```
+# via http
+$ git clone https://github.com/on3dd/reglament-frontend.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+or
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+# via ssh
+$ git clone git@github.com:on3dd/reglament-frontend.git
+```
 
-### `npm test`
+### enter the project directory 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ cd reglament-frontend
+```
 
-### `npm run build`
+### install dependencies
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## how to start work with app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+go to created folder and run:
+`yarn start` || `npm run start` — this will start dev server with hot reload on `localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`yarn build` || `npm run build` — this will build production bundle, with tree-shaking, uglify and all this modern fancy stuff

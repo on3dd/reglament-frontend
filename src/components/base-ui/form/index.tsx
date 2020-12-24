@@ -38,7 +38,7 @@ export const FormControl = styled.div`
 export const FormErrors = styled.span`
   margin: 0 0 0 1rem;
   color: #e74c3c;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 `;
 
 export const FormInput = styled(Input)``;

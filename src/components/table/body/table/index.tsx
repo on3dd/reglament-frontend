@@ -52,15 +52,7 @@ const TableBodyTable: React.FC<TableBodyTableProps> = ({
     prepareRow,
     getTableProps,
     getTableBodyProps,
-    pageOptions,
     page,
-    gotoPage,
-    previousPage,
-    nextPage,
-    setPageSize,
-    canPreviousPage,
-    canNextPage,
-    state: { pageIndex, pageSize },
   } = instance;
 
   return (

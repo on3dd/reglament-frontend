@@ -81,6 +81,10 @@ export const ICONS: Icons = {
   font_sepia: require('../assets/icons/font_sepia.svg').default,
   interval_inc: require('../assets/icons/interval_inc.svg').default,
   interval_dec: require('../assets/icons/interval_dec.svg').default,
+  arrow_left: require('../assets/icons/arrow_left.svg').default,
+  arrow_left_sec: require('../assets/icons/arrow_left_sec.svg').default,
+  arrow_right: require('../assets/icons/arrow_right.svg').default,
+  arrow_right_sec: require('../assets/icons/arrow_right_sec.svg').default,
 };
 
 export const AGENCY_TYPES: SelectItem[] = ['АГО', 'Дума', 'Глава ГО'];

@@ -14,6 +14,10 @@ declare module '@reglament' {
     font_sepia: string;
     interval_inc: string;
     interval_dec: string;
+    arrow_left: string;
+    arrow_left_sec: string;
+    arrow_right: string;
+    arrow_right_sec: string;
   }
 
   export type Icon = keyof Icons;

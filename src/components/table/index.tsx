@@ -36,7 +36,7 @@ const TableComponent: React.FC = observer(() => {
     <TableContainer className="table">
       <TableHeader />
       <TableBody instance={instance} />
-      <TableFooter />
+      <TableFooter instance={instance} />
     </TableContainer>
   );
 });

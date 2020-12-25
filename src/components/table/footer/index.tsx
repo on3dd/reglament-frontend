@@ -1,9 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { PropsWithTheme } from '@reglament';
+import { PropsWithTheme, PropsWithTable } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
+type TableFooterProps = PropsWithTable<{}>;
 
 const margin = css`
   margin-right: 1ch;
@@ -45,8 +47,22 @@ const TableFooterArrow = styled.span`
   ${margin}
 `;
 
-const TableFooter: React.FC = () => {
+const TableFooter: React.FC<TableFooterProps> = ({
+  instance,
+}: TableFooterProps) => {
   const { theme } = useThemeContext();
+
+  const {
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = instance as any;
 
   return (
     <FooterContainer theme={theme}>

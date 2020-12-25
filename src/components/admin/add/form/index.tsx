@@ -42,7 +42,7 @@ const FormControlNested = styled.div`
 const defaultValuesFactory = (): DocumentDraft => ({
   type: DOCUMENT_TYPES[0],
   agency: AGENCY_TYPES[0],
-  date: '',
+  placed_at: '',
   number: '',
   name: '',
   is_project: true,
@@ -171,7 +171,7 @@ const AdminAddForm: React.FC = observer(() => {
                 onChange={onChange}
               />
 
-              {errors.date && (
+              {errors.placed_at && (
                 <FormErrors>
                   Пожалуйста, введите дату документа.
                 </FormErrors>

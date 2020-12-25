@@ -1,11 +1,13 @@
-import React, { useCallback, ChangeEvent } from 'react';
+import React, { useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { PropsWithTheme } from '@reglament';
+import { PropsWithTheme, SearchDraft } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 import { AGENCY_TYPES, DOCUMENT_TYPES } from '../../../utils/constants';
 
+import { Form } from '../../base-ui/form';
 import Button from '../../base-ui/button';
 
 import TableHeaderGroup from './group';
@@ -35,82 +37,140 @@ const TableHeaderDouble = styled.div`
 
 const TableHeaderButton = styled(Button)``;
 
+const defaultValuesFactory = (): SearchDraft => ({});
+
 const TableHeader: React.FC = () => {
   const { theme } = useThemeContext();
 
-  const onChange = useCallback((evt: ChangeEvent) => {
-    console.log('evt.target', evt.target);
+  const { control, handleSubmit } = useForm({
+    defaultValues: defaultValuesFactory(),
+  });
+
+  const onSubmit = useCallback((data: SearchDraft) => {
+    console.log(
+      'filtered data:',
+      Object.fromEntries(
+        Object.entries(data).reduce((acc, [key, value]) => {
+          return !!value ? [...acc, [key, value] as [string, any]] : acc;
+        }, [] as [string, any][]),
+      ),
+    );
   }, []);
 
   return (
-    <HeaderContainer theme={theme} className="table__header">
-      <TableHeaderGroup id="agency" label="Орган">
-        <TableHeaderSelect
-          id="document__type"
-          name="document__type"
-          items={AGENCY_TYPES}
-          value={AGENCY_TYPES[0].toString()}
-          onChange={onChange}
-        />
-      </TableHeaderGroup>
-
-      <TableHeaderGroup id="document__type" label="Вид документа">
-        <TableHeaderSelect
-          id="document__type"
-          name="document__type"
-          items={DOCUMENT_TYPES}
-          value={DOCUMENT_TYPES[0].toString()}
-          onChange={onChange}
-        />
-      </TableHeaderGroup>
-
-      <TableHeaderGroup id="project" label="Проект">
-        <TableHeaderInput
-          id="project"
-          type="checkbox"
-          checked={true}
-          onChange={onChange}
-        />
-      </TableHeaderGroup>
-
-      <TableHeaderGroup id="number" label="№">
-        <TableHeaderInput
-          id="number"
-          type="text"
-          value="490-па"
-          onChange={onChange}
-        />
-      </TableHeaderGroup>
-
-      <TableHeaderGroup id="date" label="Дата">
-        <TableHeaderDouble>
-          <TableHeaderInput
-            id="date"
-            type="date"
-            value="1998-10-25"
-            onChange={onChange}
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <HeaderContainer theme={theme} className="table__header">
+        <TableHeaderGroup id="agency" label="Орган">
+          <Controller
+            name="agency"
+            control={control}
+            render={({ value, onChange }) => (
+              <TableHeaderSelect
+                id="agency"
+                name="agency"
+                value={value}
+                items={AGENCY_TYPES}
+                onChange={onChange}
+              />
+            )}
           />
+        </TableHeaderGroup>
 
-          <TableHeaderInput
-            id="date"
-            type="date"
-            value="2020-12-31"
-            onChange={onChange}
+        <TableHeaderGroup id="type" label="Вид документа">
+          <Controller
+            name="type"
+            control={control}
+            render={({ value, onChange }) => (
+              <TableHeaderSelect
+                id="type"
+                name="type"
+                value={value}
+                items={DOCUMENT_TYPES}
+                onChange={onChange}
+              />
+            )}
           />
-        </TableHeaderDouble>
-      </TableHeaderGroup>
+        </TableHeaderGroup>
 
-      <TableHeaderGroup id="name" label="Наименование">
-        <TableHeaderInput
-          id="name"
-          type="text"
-          value=""
-          onChange={onChange}
-        />
-      </TableHeaderGroup>
+        <TableHeaderGroup id="is_project" label="Проект">
+          <Controller
+            name="is_project"
+            control={control}
+            render={({ value, onChange }) => (
+              <TableHeaderInput
+                id="is_project"
+                type="checkbox"
+                value={value}
+                checked={!!value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </TableHeaderGroup>
 
-      <TableHeaderButton>Поиск</TableHeaderButton>
-    </HeaderContainer>
+        <TableHeaderGroup id="number" label="№">
+          <Controller
+            name="number"
+            control={control}
+            render={({ value, onChange }) => (
+              <TableHeaderInput
+                id="number"
+                type="text"
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </TableHeaderGroup>
+
+        <TableHeaderGroup id="posted_at" label="Дата">
+          <TableHeaderDouble>
+            <Controller
+              name="posted_at"
+              control={control}
+              render={({ value, onChange }) => (
+                <TableHeaderInput
+                  id="posted_at"
+                  type="date"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+
+            <Controller
+              name="created_at"
+              control={control}
+              render={({ value, onChange }) => (
+                <TableHeaderInput
+                  id="created_at"
+                  type="date"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+          </TableHeaderDouble>
+        </TableHeaderGroup>
+
+        <TableHeaderGroup id="name" label="Наименование">
+          <Controller
+            name="name"
+            control={control}
+            render={({ value, onChange }) => (
+              <TableHeaderInput
+                id="name"
+                type="text"
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+        </TableHeaderGroup>
+
+        <TableHeaderButton type="submit">Поиск</TableHeaderButton>
+      </HeaderContainer>
+    </Form>
   );
 };
 

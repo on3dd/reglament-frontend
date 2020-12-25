@@ -10,6 +10,6 @@ export const mockCreateDocument = async (
   return {
     ...data,
     id: 1,
-    create_date: new Date().toDateString(),
+    created_at: new Date().toDateString(),
   };
 };

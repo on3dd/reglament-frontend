@@ -28,8 +28,8 @@ declare module '@reglament' {
     type: SelectItem;
     agency: SelectItem;
     name: string;
-    date: string;
     number: string;
+    placed_at: string;
     is_project: boolean;
     file?: string | Blob | File;
   }
@@ -37,11 +37,11 @@ declare module '@reglament' {
   export interface DocumentModel {
     id: number;
     name: string;
-    date: string;
     number: string;
     type: SelectItem;
     agency: SelectItem;
-    create_date: string;
+    placed_at: string;
+    created_at: string;
     file?: string | Blob | File;
   }
 
@@ -91,4 +91,16 @@ declare module '@reglament' {
   }
 
   export type SiteInfo = SiteInfoModel | null;
+
+  export interface SearchDraft {
+    type?: SelectItem;
+    agency?: SelectItem;
+    name?: string;
+    placed_at?: string;
+    created_at?: string;
+    number?: string;
+    is_project?: boolean;
+  }
+
+  export type Search = SearchDraft | null;
 }

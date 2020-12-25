@@ -1,8 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
+import { observer } from 'mobx-react-lite';
 import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { PropsWithTheme, SearchDraft } from '@reglament';
+
+import { useSearchStore } from '../../../store/search';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 import { AGENCY_TYPES, DOCUMENT_TYPES } from '../../../utils/constants';
@@ -39,23 +42,32 @@ const TableHeaderButton = styled(Button)``;
 
 const defaultValuesFactory = (): SearchDraft => ({});
 
-const TableHeader: React.FC = () => {
+const TableHeader: React.FC = observer(() => {
+  const { store } = useSearchStore();
   const { theme } = useThemeContext();
 
   const { control, handleSubmit } = useForm({
     defaultValues: defaultValuesFactory(),
   });
 
-  const onSubmit = useCallback((data: SearchDraft) => {
-    console.log(
-      'filtered data:',
-      Object.fromEntries(
+  const disabled = useMemo(() => {
+    return store.fetching;
+  }, [store.fetching]);
+
+  const onSubmit = useCallback(
+    async (data: SearchDraft) => {
+      const filteredData = Object.fromEntries(
         Object.entries(data).reduce((acc, [key, value]) => {
           return !!value ? [...acc, [key, value] as [string, any]] : acc;
         }, [] as [string, any][]),
-      ),
-    );
-  }, []);
+      );
+
+      console.log('filteredData:', filteredData);
+
+      await store.search(filteredData);
+    },
+    [store],
+  );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -168,10 +180,12 @@ const TableHeader: React.FC = () => {
           />
         </TableHeaderGroup>
 
-        <TableHeaderButton type="submit">Поиск</TableHeaderButton>
+        <TableHeaderButton disabled={disabled} type="submit">
+          Поиск
+        </TableHeaderButton>
       </HeaderContainer>
     </Form>
   );
-};
+});
 
 export default TableHeader;

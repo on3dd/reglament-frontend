@@ -1,4 +1,6 @@
-import { Column } from 'react-table';
+// TODO: fix any
+
+import { Column, TableState } from 'react-table';
 
 import { DocumentModel } from '@reglament';
 
@@ -32,3 +34,8 @@ export const columns: Column<DocumentModel>[] = [
     accessor: 'created_at',
   },
 ];
+
+export const initialState: Partial<TableState<DocumentModel>> & any = {
+  pageIndex: 0,
+  pageSize: 20,
+};

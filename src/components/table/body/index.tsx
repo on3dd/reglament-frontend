@@ -1,34 +1,24 @@
-import React, { useEffect } from 'react';
-import { autorun } from 'mobx';
-import { observer } from 'mobx-react-lite';
-import { useTable } from 'react-table';
+import React from 'react';
 import styled from 'styled-components';
 
-import { useSearchStore } from '../../../store/search';
-
-import { columns } from './config';
+import { PropsWithTable } from '@reglament';
 
 import TableBodyTable from './table';
+
+type TableBodyProps = PropsWithTable<{}>;
 
 const BodyContainer = styled.div`
   margin-bottom: 0.85rem;
 `;
 
-const TableBody: React.FC = observer(() => {
-  const { store } = useSearchStore();
-  const instance = useTable({ columns, data: store.result });
-
-  useEffect(() => {
-    autorun(() => {
-      store.search({});
-    });
-  }, [store]);
-
+const TableBody: React.FC<TableBodyProps> = ({
+  instance,
+}: TableBodyProps) => {
   return (
     <BodyContainer className="table__body">
       <TableBodyTable instance={instance} />
     </BodyContainer>
   );
-});
+};
 
 export default TableBody;

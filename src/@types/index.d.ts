@@ -1,5 +1,6 @@
 declare module '@reglament' {
   import { ReactText } from 'react';
+  import { TableInstance } from 'react-table';
 
   export interface Icons {
     eye: string;
@@ -68,7 +69,13 @@ declare module '@reglament' {
     buttonColorDis: string;
   }
 
-  export type PropsWithTheme<T> = T & { theme: Theme };
+  export type PropsWithTheme<T> = T & {
+    theme: Theme;
+  };
+
+  export type PropsWithTable<T> = T & {
+    instance: TableInstance<DocumentModel>;
+  };
 
   export type SelectItem = ReactText;
 

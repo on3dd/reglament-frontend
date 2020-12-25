@@ -1,12 +1,15 @@
+/*
+  TODO: fix any's
+  see 1: https://stackoverflow.com/questions/64608974/react-table-pagination-properties-doesnt-exist-on-type-tableinstance
+  see 2: https://github.com/tannerlinsley/react-table/discussions/2648
+*/
+
 import React from 'react';
-import { TableInstance } from 'react-table';
 import styled, { css } from 'styled-components';
 
-import { DocumentModel, PropsWithTheme } from '@reglament';
+import { PropsWithTheme, PropsWithTable } from '@reglament';
 
-type TableBodyTableProps = {
-  instance: TableInstance<DocumentModel>;
-};
+type TableBodyTableProps = PropsWithTable<{}> & any;
 
 const border = css`
   border: 1px solid #acacac;
@@ -45,19 +48,27 @@ const TableBodyTable: React.FC<TableBodyTableProps> = ({
   instance,
 }: TableBodyTableProps) => {
   const {
-    rows,
     headerGroups,
     prepareRow,
     getTableProps,
     getTableBodyProps,
+    pageOptions,
+    page,
+    gotoPage,
+    previousPage,
+    nextPage,
+    setPageSize,
+    canPreviousPage,
+    canNextPage,
+    state: { pageIndex, pageSize },
   } = instance;
 
   return (
     <Table {...getTableProps()}>
       <thead>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map((headerGroup: any) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
+            {headerGroup.headers.map((column: any) => (
               <Th {...column.getHeaderProps()}>
                 {column.render('Header')}
               </Th>
@@ -67,12 +78,12 @@ const TableBodyTable: React.FC<TableBodyTableProps> = ({
       </thead>
 
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {page.map((row: any) => {
           prepareRow(row);
 
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
+              {row.cells.map((cell: any) => {
                 return (
                   <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
                 );

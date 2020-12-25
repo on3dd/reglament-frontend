@@ -83,8 +83,12 @@ export const ICONS: Icons = {
   interval_dec: require('../assets/icons/interval_dec.svg').default,
 };
 
+export const AGENCY_TYPES: SelectItem[] = ['АГО', 'Дума', 'Глава ГО'];
+
 export const DOCUMENT_TYPES: SelectItem[] = [
   'Постановление',
-  'Приказ',
-  'Договор',
+  'Распоряжение',
+  'Решение',
+  'Решение (НПА)',
+  'Извещение',
 ];

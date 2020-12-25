@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PropsWithTheme } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
-import { DOCUMENT_TYPES as items } from '../../../utils/constants';
+import { AGENCY_TYPES, DOCUMENT_TYPES } from '../../../utils/constants';
 
 import Button from '../../base-ui/button';
 
@@ -45,10 +45,11 @@ const TableHeader: React.FC = () => {
   return (
     <HeaderContainer theme={theme} className="table__header">
       <TableHeaderGroup id="agency" label="Орган">
-        <TableHeaderInput
-          id="agency"
-          type="text"
-          value="Глава ГО"
+        <TableHeaderSelect
+          id="document__type"
+          name="document__type"
+          items={AGENCY_TYPES}
+          value={AGENCY_TYPES[0].toString()}
           onChange={onChange}
         />
       </TableHeaderGroup>
@@ -57,8 +58,8 @@ const TableHeader: React.FC = () => {
         <TableHeaderSelect
           id="document__type"
           name="document__type"
-          items={items}
-          value={items[0].toString()}
+          items={DOCUMENT_TYPES}
+          value={DOCUMENT_TYPES[0].toString()}
           onChange={onChange}
         />
       </TableHeaderGroup>

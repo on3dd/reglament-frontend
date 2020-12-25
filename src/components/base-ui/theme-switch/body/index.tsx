@@ -3,22 +3,17 @@ import styled from 'styled-components';
 
 import { ReglamentTheme } from '@reglament';
 
-import { visible } from '../../mixins';
-
 import Container from '../../container';
 import ThemeSwitchBodyItem from './item';
 import ThemeSwitchBodyClose from './close';
 import ThemeSwitchBodyButton from './button';
 
 type ThemeSwitchBodyProps = {
-  visible: boolean;
   onSwitcherClick: (...args: any[]) => void;
   onThemeChange: (theme: ReglamentTheme) => void;
 };
 
 const BodyContainer = styled.div`
-  ${visible}
-
   width: 100%;
   padding: 1rem 0;
 
@@ -37,12 +32,11 @@ const ThemeSwitchBodyGroup = styled.div`
 `;
 
 const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = ({
-  visible,
   onThemeChange,
   onSwitcherClick,
 }: ThemeSwitchBodyProps) => {
   return (
-    <BodyContainer visible={visible}>
+    <BodyContainer>
       <StyledContainer>
         <ThemeSwitchBodyGroup>
           <ThemeSwitchBodyItem heading="Размер шрифта">

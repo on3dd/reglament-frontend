@@ -34,11 +34,17 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   disabled,
   children,
   className,
+  onClick,
 }: BaseButtonProps) => {
   const { theme } = useThemeContext();
 
   return (
-    <Button theme={theme} disabled={disabled} className={className}>
+    <Button
+      theme={theme}
+      disabled={disabled}
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </Button>
   );

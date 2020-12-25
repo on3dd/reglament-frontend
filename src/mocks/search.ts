@@ -7,7 +7,7 @@ export const mockSearch = async (
 ): Promise<DocumentModel[]> => {
   await sleep(1000);
 
-  return new Array(100).fill(0).map((_, idx) => ({
+  return new Array(5000).fill(0).map((_, idx) => ({
     id: idx + 1,
     type: 'Постановление',
     name:

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useMemo, useCallback, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 
 import { PropsWithTheme, PropsWithTable } from '@reglament';
 
 import { useThemeContext } from '../../../utils/contexts/ThemeContext';
+
+import TableFooterPage from './page';
+import TableFooterButton from './button';
 
 type TableFooterProps = PropsWithTable<{}>;
 
@@ -14,37 +17,26 @@ const margin = css`
 type FooterContainerProps = PropsWithTheme<{}>;
 
 const FooterContainer = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 0.85rem;
 
-  button,
   span {
     color: ${({ theme }: FooterContainerProps) => {
       return theme.fontColor;
     }};
   }
-`;
 
-type TableFooterLinkProps = {
-  active?: boolean;
-};
-
-const TableFooterLink = styled.button`
-  ${margin}
-
-  border: none;
-  background: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
+  button {
+    background-color: ${({ theme }: FooterContainerProps) => {
+      return theme.buttonColor;
+    }};
   }
 
-  font-weight: ${(props: TableFooterLinkProps) =>
-    props.active ? 600 : 400};
-`;
-
-const TableFooterArrow = styled.span`
-  ${margin}
+  span,
+  button {
+    ${margin}
+  }
 `;
 
 const TableFooter: React.FC<TableFooterProps> = ({
@@ -53,26 +45,59 @@ const TableFooter: React.FC<TableFooterProps> = ({
   const { theme } = useThemeContext();
 
   const {
-    canPreviousPage,
     canNextPage,
-    pageOptions,
+    canPreviousPage,
     pageCount,
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = instance as any;
+
+  const max = useMemo(() => {
+    return pageCount;
+  }, [pageCount]);
+
+  const value = useMemo(() => {
+    return pageIndex + 1;
+  }, [pageIndex]);
+
+  const onFirstClick = useCallback(() => {
+    gotoPage(0);
+  }, [gotoPage]);
+
+  const onPrevClick = useCallback(() => {
+    if (canPreviousPage) previousPage();
+  }, [canPreviousPage, previousPage]);
+
+  const onNextClick = useCallback(() => {
+    if (canNextPage) nextPage();
+  }, [canNextPage, nextPage]);
+
+  const onLastClick = useCallback(() => {
+    gotoPage(max - 1);
+  }, [gotoPage, max]);
+
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value);
+
+      if (value > 0 && value <= max) {
+        gotoPage(value - 1);
+      }
+    },
+    [gotoPage, max],
+  );
 
   return (
     <FooterContainer theme={theme}>
-      <TableFooterLink active={true}>1</TableFooterLink>
-      <TableFooterLink>2</TableFooterLink>
-      <TableFooterLink>3</TableFooterLink>
+      <TableFooterButton name="arrow_left_sec" onClick={onFirstClick} />
+      <TableFooterButton name="arrow_left" onClick={onPrevClick} />
 
-      <TableFooterArrow>...</TableFooterArrow>
+      <TableFooterPage max={max} value={value} onChange={onChange} />
 
-      <TableFooterLink>228</TableFooterLink>
+      <TableFooterButton name="arrow_right" onClick={onNextClick} />
+      <TableFooterButton name="arrow_right_sec" onClick={onLastClick} />
     </FooterContainer>
   );
 };

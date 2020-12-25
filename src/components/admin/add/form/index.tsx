@@ -12,7 +12,7 @@ import { DocumentDraft } from '@reglament';
 
 import { useDocumentStore } from '../../../../store/document';
 
-import { DOCUMENT_TYPES as items } from '../../../../utils/constants';
+import { AGENCY_TYPES, DOCUMENT_TYPES } from '../../../../utils/constants';
 
 import {
   Form,
@@ -40,11 +40,12 @@ const FormControlNested = styled.div`
 `;
 
 const defaultValuesFactory = (): DocumentDraft => ({
-  type: items[0],
-  agency: '',
+  type: DOCUMENT_TYPES[0],
+  agency: AGENCY_TYPES[0],
   date: '',
   number: '',
   name: '',
+  is_project: true,
 });
 
 const AdminAddForm: React.FC = observer(() => {
@@ -85,43 +86,49 @@ const AdminAddForm: React.FC = observer(() => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="type"
-        control={control}
-        rules={{ required: true }}
-        render={({ value, onChange }) => (
-          <FormGroup>
-            <FormLabel htmlFor="type">Вид документа</FormLabel>
-            <FormControl>
+      <FormGroup>
+        <FormLabel htmlFor="type">Вид документа</FormLabel>
+        <FormControl>
+          <Controller
+            name="type"
+            control={control}
+            rules={{ required: true }}
+            render={({ value, onChange }) => (
               <FormSelect
                 id="type"
                 name="type"
-                items={items}
                 value={value}
+                items={DOCUMENT_TYPES}
                 onChange={onChange}
               />
+            )}
+          />
 
-              <FormControlNested>
+          <FormControlNested>
+            <Controller
+              name="is_project"
+              control={control}
+              rules={{ required: true }}
+              render={({ value, onChange }) => (
                 <FormInput
-                  id="project"
-                  name="project"
+                  id="is_project"
+                  name="is_project"
                   type="checkbox"
-                  checked={true}
+                  value={value}
+                  checked={!!value}
                   onChange={onChange}
                 />
-
-                <FormLabel htmlFor="project">Проект</FormLabel>
-              </FormControlNested>
-
-              {errors.type && (
-                <FormErrors>
-                  Пожалуйста, выберите вид документа.
-                </FormErrors>
               )}
-            </FormControl>
-          </FormGroup>
-        )}
-      />
+            />
+
+            <FormLabel htmlFor="is_project">Проект</FormLabel>
+          </FormControlNested>
+
+          {errors.type && (
+            <FormErrors>Пожалуйста, выберите вид документа.</FormErrors>
+          )}
+        </FormControl>
+      </FormGroup>
 
       <Controller
         name="agency"
@@ -131,10 +138,11 @@ const AdminAddForm: React.FC = observer(() => {
           <FormGroup>
             <FormLabel htmlFor="agency">Орган</FormLabel>
             <FormControl>
-              <FormInput
+              <FormSelect
                 id="agency"
                 name="agency"
                 value={value}
+                items={AGENCY_TYPES}
                 onChange={onChange}
               />
 

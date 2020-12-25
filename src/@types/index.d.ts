@@ -26,20 +26,21 @@ declare module '@reglament' {
 
   export interface DocumentDraft {
     type: SelectItem;
+    agency: SelectItem;
     name: string;
     date: string;
-    agency: string;
     number: string;
+    is_project: boolean;
     file?: string | Blob | File;
   }
 
   export interface DocumentModel {
     id: number;
-    type: SelectItem;
     name: string;
     date: string;
-    agency: string;
     number: string;
+    type: SelectItem;
+    agency: SelectItem;
     create_date: string;
     file?: string | Blob | File;
   }

@@ -8,6 +8,8 @@ import { API_ENDPOINTS } from '../utils/constants';
 export const createDocument = async (
   draft: DocumentDraft,
 ): Promise<AxiosResponse<DocumentModel>> => {
+  const token = localStorage.getItem('token');
+
   const data = new FormData();
 
   data.append('name', draft.name);
@@ -24,6 +26,9 @@ export const createDocument = async (
   return await axiosService.post(API_ENDPOINTS.documents, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      token,
     },
   });
 };

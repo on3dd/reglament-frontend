@@ -14,5 +14,11 @@ export const fetchSiteInfo = async (): Promise<
 export const updateSiteInfo = async (
   data: SiteInfoModel,
 ): Promise<AxiosResponse<SiteInfoModel>> => {
-  return await axiosService.put(API_ENDPOINTS.site_info, data);
+  const token = localStorage.getItem('token');
+
+  return await axiosService.put(API_ENDPOINTS.site_info, data, {
+    params: {
+      token,
+    },
+  });
 };

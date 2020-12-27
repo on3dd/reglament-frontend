@@ -1,16 +1,18 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
-import { UserModel, Token } from '@reglament';
+import { UserModel, Token, TokenModel } from '@reglament';
 
 // import { login, logout } from '../../api/auth';
 
 import { mockLogin, mockLogout } from '../../mocks/auth';
 
 export default class UserStore {
-  token: Token = null;
+  token: Token;
   fetching: boolean = false;
 
   constructor() {
+    this.token = this.getToken();
+
     makeObservable(this, {
       token: observable,
       fetching: observable,
@@ -26,7 +28,7 @@ export default class UserStore {
     const token = await mockLogin(data);
 
     runInAction(() => {
-      this.token = token;
+      this.setToken(token);
 
       console.log('login this.token', this.token);
     });
@@ -42,7 +44,7 @@ export default class UserStore {
     await mockLogout();
 
     runInAction(() => {
-      this.token = null;
+      this.removeToken();
 
       console.log('logout this.token', this.token);
     });
@@ -56,5 +58,21 @@ export default class UserStore {
 
       console.log('this.fetching', this.fetching);
     });
+  }
+
+  private getToken() {
+    return localStorage.getItem('token') as Token;
+  }
+
+  private removeToken() {
+    this.token = null;
+
+    localStorage.removeItem('token');
+  }
+
+  private setToken(token: TokenModel) {
+    this.token = token;
+
+    localStorage.setItem('token', token);
   }
 }

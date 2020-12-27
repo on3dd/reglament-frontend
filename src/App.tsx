@@ -60,7 +60,7 @@ const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
   return (
     <ThemeProvider theme={theme} changeTheme={changeTheme}>
       <AppContainer theme={theme}>
-        <GlobalStyle />
+        <GlobalStyle fontSize={14} lineHeight={1.2} />
 
         <RootComponent route={route} />
       </AppContainer>

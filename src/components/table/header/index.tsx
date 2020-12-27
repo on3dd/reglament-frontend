@@ -64,15 +64,15 @@ const TableHeader: React.FC = observer(() => {
 
   const onSubmit = useCallback(
     async (data: SearchDraft) => {
-      const filteredData = Object.fromEntries(
-        Object.entries(data).reduce((acc, [key, value]) => {
-          return !!value ? [...acc, [key, value] as [string, any]] : acc;
-        }, [] as [string, any][]),
-      );
+      // const filteredData = Object.fromEntries(
+      //   Object.entries(data).reduce((acc, [key, value]) => {
+      //     return !!value ? [...acc, [key, value] as [string, any]] : acc;
+      //   }, [] as [string, any][]),
+      // );
 
-      console.log('filteredData:', filteredData);
+      console.log('data:', data);
 
-      await store.search(filteredData);
+      await store.search(data);
     },
     [store],
   );

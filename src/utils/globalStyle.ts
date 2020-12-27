@@ -1,13 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+type GlobalStyleProps = {
+  fontSize: number;
+  lineHeight: number;
+};
+
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   * {
     box-sizing: border-box;
   }
 
   html {
-    font-size: 14px;
     font-family: Roboto, sans-serif;
+    font-size: ${(props) => `${props.fontSize}px`};
+    line-height: ${(props) => `${props.lineHeight}rem`};
   }
 
   body {

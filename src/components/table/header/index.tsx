@@ -40,7 +40,15 @@ const TableHeaderDouble = styled.div`
 
 const TableHeaderButton = styled(Button)``;
 
-const defaultValuesFactory = (): SearchDraft => ({});
+const defaultValuesFactory = (): SearchDraft => ({
+  name: '',
+  type: '',
+  agency: '',
+  number: '',
+  placed_at: '',
+  created_at: '',
+  is_project: false,
+});
 
 const TableHeader: React.FC = observer(() => {
   const { store } = useSearchStore();
@@ -135,14 +143,14 @@ const TableHeader: React.FC = observer(() => {
           />
         </TableHeaderGroup>
 
-        <TableHeaderGroup id="posted_at" label="Дата">
+        <TableHeaderGroup id="placed_at" label="Дата">
           <TableHeaderDouble>
             <Controller
-              name="posted_at"
+              name="placed_at"
               control={control}
               render={({ value, onChange }) => (
                 <TableHeaderInput
-                  id="posted_at"
+                  id="placed_at"
                   type="date"
                   value={value}
                   onChange={onChange}

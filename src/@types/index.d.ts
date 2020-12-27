@@ -114,4 +114,6 @@ declare module '@reglament' {
   }
 
   export type Search = SearchDraft | null;
+
+  export type Token = string | null;
 }

@@ -1,18 +1,18 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
-import { User, UserModel } from '@reglament';
+import { UserModel, Token } from '@reglament';
 
 // import { login, logout } from '../../api/auth';
 
 import { mockLogin, mockLogout } from '../../mocks/auth';
 
 export default class UserStore {
-  user: User = null;
+  token: Token = null;
   fetching: boolean = false;
 
   constructor() {
     makeObservable(this, {
-      user: observable,
+      token: observable,
       fetching: observable,
       login: action,
     });
@@ -21,14 +21,14 @@ export default class UserStore {
   async login(data: UserModel) {
     this.toggleFetching();
 
-    // const { data: user } = await login(data);
+    // const { data: token } = await login(data);
 
-    const user = await mockLogin(data);
+    const token = await mockLogin(data);
 
     runInAction(() => {
-      this.user = user;
+      this.token = token;
 
-      console.log('login this.user', this.user);
+      console.log('login this.token', this.token);
     });
 
     this.toggleFetching();
@@ -42,9 +42,9 @@ export default class UserStore {
     await mockLogout();
 
     runInAction(() => {
-      this.user = null;
+      this.token = null;
 
-      console.log('logout this.user', this.user);
+      console.log('logout this.token', this.token);
     });
 
     this.toggleFetching();

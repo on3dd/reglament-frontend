@@ -1,11 +1,11 @@
-import { UserModel } from '@reglament';
+import { UserModel, Token } from '@reglament';
 
 import { sleep } from '../utils/functions';
 
-export const mockLogin = async (data: UserModel): Promise<UserModel> => {
+export const mockLogin = async (_: UserModel): Promise<Token> => {
   await sleep(1000);
 
-  return data;
+  return 'very_secret_token';
 };
 
 export const mockLogout = async (): Promise<void> => {

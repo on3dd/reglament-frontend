@@ -1,9 +1,14 @@
 import { Icons, ReglamentThemes, SelectItem } from '@reglament';
 
-export const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
+export const API_BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? '/'
+    : 'http://localhost:8080/api/1.0.0';
 
 export const API_ENDPOINTS = {
   auth: '/auth',
+  site_info: '/siteinfo',
+  documents: '/documents',
 };
 
 export const API_PARAMS = {};

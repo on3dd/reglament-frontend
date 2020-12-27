@@ -91,14 +91,14 @@ declare module '@reglament' {
   export type User = UserModel | null;
 
   export interface SiteInfoModel {
+    boss: string;
+    date: string;
     email: string;
     number: string;
     number_name: string;
     address: string;
     reg_num: string;
-    date: string;
     reg_author: string;
-    boss: string;
   }
 
   export type SiteInfo = SiteInfoModel | null;
@@ -107,9 +107,9 @@ declare module '@reglament' {
     type?: SelectItem;
     agency?: SelectItem;
     name?: string;
+    number?: string;
     placed_at?: string;
     created_at?: string;
-    number?: string;
     is_project?: boolean;
   }
 

@@ -175,24 +175,24 @@ const AdminEditForm: React.FC = observer(() => {
       />
 
       <FormGroup>
-        <FormLabel htmlFor="number">Запись о регистрации</FormLabel>
+        <FormLabel htmlFor="reg_num">Запись о регистрации</FormLabel>
         <FormControlMultiple>
           <Controller
-            name="number"
+            name="reg_num"
             control={control}
             rules={{ required: true }}
             render={({ value, onChange }) => (
               <FormControlNested>
-                <FormLabelNested htmlFor="number">№</FormLabelNested>
+                <FormLabelNested htmlFor="reg_num">№</FormLabelNested>
 
                 <FormInput
-                  id="number"
+                  id="reg_num"
                   name="number"
                   value={value}
                   onChange={onChange}
                 />
 
-                {errors.number && (
+                {errors.reg_num && (
                   <FormErrors>
                     Пожалуйста, введите номер документа.
                   </FormErrors>

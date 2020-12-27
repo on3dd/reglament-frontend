@@ -108,15 +108,15 @@ const AdminAddForm: React.FC = observer(() => {
             <Controller
               name="is_project"
               control={control}
-              rules={{ required: true }}
               render={({ value, onChange }) => (
                 <FormInput
                   id="is_project"
                   name="is_project"
                   type="checkbox"
-                  value={value}
-                  checked={!!value}
-                  onChange={onChange}
+                  checked={value}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    onChange(e.target.checked)
+                  }
                 />
               )}
             />

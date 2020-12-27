@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, ChangeEvent } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
@@ -120,9 +120,10 @@ const TableHeader: React.FC = observer(() => {
               <TableHeaderInput
                 id="is_project"
                 type="checkbox"
-                value={value}
-                checked={!!value}
-                onChange={onChange}
+                checked={value}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  onChange(e.target.checked)
+                }
               />
             )}
           />

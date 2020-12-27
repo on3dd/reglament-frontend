@@ -30,14 +30,9 @@ export const columns: Column<DocumentModel>[] = [
   {
     Header: 'Наименование',
     accessor: 'name',
-    Cell: ({
-      value,
-      cell: {
-        row: {
-          values: { file_path },
-        },
-      },
-    }) => <TableLink href={file_path}>{value}</TableLink>,
+    Cell: ({ value, data, row: { index } }) => (
+      <TableLink href={data[index].file_path}>{value}</TableLink>
+    ),
   },
   {
     Header: 'Дата размещения',

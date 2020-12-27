@@ -8,7 +8,6 @@ type TableLinkProps = PropsWithChildren<{
 const Link = styled.a``;
 
 const TableLink: React.FC<TableLinkProps> = ({ href, children }) => {
-  console.log('href', href);
   return <Link href={href}>{children}</Link>;
 };
 

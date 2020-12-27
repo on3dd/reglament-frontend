@@ -2,6 +2,8 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { User, UserModel } from '@reglament';
 
+// import { login, logout } from '../../api/auth';
+
 import { mockLogin, mockLogout } from '../../mocks/auth';
 
 export default class UserStore {
@@ -19,6 +21,8 @@ export default class UserStore {
   async login(data: UserModel) {
     this.toggleFetching();
 
+    // const { data: user } = await login(data);
+
     const user = await mockLogin(data);
 
     runInAction(() => {
@@ -32,6 +36,8 @@ export default class UserStore {
 
   async logout() {
     this.toggleFetching();
+
+    // await logout();
 
     await mockLogout();
 

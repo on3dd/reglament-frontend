@@ -2,6 +2,8 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { SiteInfoModel } from '@reglament';
 
+// import { fetchSiteInfo, updateSiteInfo } from '../../api/site-info';
+
 import {
   mockFetchSiteInfo,
   mockUpdateSiteInfo,
@@ -33,6 +35,8 @@ export default class SiteInfoStore {
   async fetchSiteInfo() {
     this.toggleFetching();
 
+    // const { data: info } = await fetchSiteInfo();
+
     const info = await mockFetchSiteInfo();
 
     runInAction(() => {
@@ -46,6 +50,8 @@ export default class SiteInfoStore {
 
   async updateSiteInfo(data: SiteInfoModel) {
     this.toggleFetching();
+
+    // const { data: info } = await updateSiteInfo(data);
 
     const info = await mockUpdateSiteInfo(data);
 

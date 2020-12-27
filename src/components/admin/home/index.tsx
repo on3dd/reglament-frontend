@@ -9,6 +9,8 @@ import { useThemeContext } from '../../../utils/contexts/ThemeContext';
 type AdminHomeContainerProps = PropsWithTheme<{}>;
 
 const AdminHomeContainer = styled.div`
+  display: inline-block;
+
   a {
     color: ${({ theme }: AdminHomeContainerProps) => {
       return theme.linkColor;

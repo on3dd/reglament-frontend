@@ -11,14 +11,14 @@ import {
 
 export default class SiteInfoStore {
   info: SiteInfoModel = {
+    boss: '',
+    date: '',
     email: '',
     number: '',
     number_name: '',
     address: '',
     reg_num: '',
-    date: '',
     reg_author: '',
-    boss: '',
   };
 
   fetching: boolean = false;

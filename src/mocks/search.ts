@@ -16,5 +16,6 @@ export const mockSearch = async (
     number: '490-па',
     placed_at: '15.10.2020',
     created_at: '15.10.2020',
+    file_path: 'http://www.africau.edu/images/default/sample.pdf',
   }));
 };

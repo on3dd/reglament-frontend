@@ -36,7 +36,7 @@ declare module '@reglament' {
     number: string;
     placed_at: string;
     is_project: boolean;
-    file?: string | Blob | File;
+    file?: File;
   }
 
   export interface DocumentModel {
@@ -47,7 +47,7 @@ declare module '@reglament' {
     agency: SelectItem;
     placed_at: string;
     created_at: string;
-    file?: string | Blob | File;
+    file_path: string;
   }
 
   export type Document = DocumentModel | null;

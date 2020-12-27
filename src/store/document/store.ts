@@ -2,9 +2,9 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { Document, DocumentDraft } from '@reglament';
 
-// import { createDocument } from '../../api/document';
+import { createDocument } from '../../api/document';
 
-import { mockCreateDocument } from '../../mocks/document';
+// import { mockCreateDocument } from '../../mocks/document';
 
 export default class DocumentStore {
   document: Document = null;
@@ -21,9 +21,9 @@ export default class DocumentStore {
   async createDocument(data: DocumentDraft) {
     this.toggleFetching();
 
-    // const { data: document } = await createDocument(data);
+    const { data: document } = await createDocument(data);
 
-    const document = await mockCreateDocument(data);
+    // const document = await mockCreateDocument(data);
 
     runInAction(() => {
       this.document = document;

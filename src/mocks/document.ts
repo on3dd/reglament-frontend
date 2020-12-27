@@ -10,6 +10,7 @@ export const mockCreateDocument = async (
   return {
     ...data,
     id: 1,
+    file_path: 'nigger',
     created_at: new Date().toDateString(),
   };
 };

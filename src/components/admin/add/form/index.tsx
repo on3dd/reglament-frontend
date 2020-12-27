@@ -157,16 +157,16 @@ const AdminAddForm: React.FC = observer(() => {
       />
 
       <Controller
-        name="date"
+        name="placed_at"
         control={control}
         rules={{ required: true }}
         render={({ onChange }) => (
           <FormGroup>
-            <FormLabel htmlFor="date">Дата</FormLabel>
+            <FormLabel htmlFor="placed_at">Дата</FormLabel>
             <FormControl>
               <FormInput
-                id="date"
-                name="date"
+                id="placed_at"
+                name="placed_at"
                 type="date"
                 onChange={onChange}
               />

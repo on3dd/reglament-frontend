@@ -4,6 +4,8 @@ import { Column, TableState } from 'react-table';
 
 import { DocumentModel } from '@reglament';
 
+import TableLink from './link';
+
 export const columns: Column<DocumentModel>[] = [
   {
     Header: '№',
@@ -28,6 +30,14 @@ export const columns: Column<DocumentModel>[] = [
   {
     Header: 'Наименование',
     accessor: 'name',
+    Cell: ({
+      value,
+      cell: {
+        row: {
+          values: { file_path },
+        },
+      },
+    }) => <TableLink href={file_path}>{value}</TableLink>,
   },
   {
     Header: 'Дата размещения',

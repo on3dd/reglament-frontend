@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { AuthStateProvider } from './store/auth';
 import { ThemeStateProvider } from './store/theme';
@@ -13,17 +14,19 @@ import routes from './router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeStateProvider>
-      <AuthStateProvider>
-        <SearchStateProvider>
-          <DocumentStateProvider>
-            <SiteInfoStateProvider>
-              <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
-            </SiteInfoStateProvider>
-          </DocumentStateProvider>
-        </SearchStateProvider>
-      </AuthStateProvider>
-    </ThemeStateProvider>
+    <HelmetProvider>
+      <ThemeStateProvider>
+        <AuthStateProvider>
+          <SearchStateProvider>
+            <DocumentStateProvider>
+              <SiteInfoStateProvider>
+                <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+              </SiteInfoStateProvider>
+            </DocumentStateProvider>
+          </SearchStateProvider>
+        </AuthStateProvider>
+      </ThemeStateProvider>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

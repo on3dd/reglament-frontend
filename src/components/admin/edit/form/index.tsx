@@ -285,7 +285,7 @@ const AdminEditForm: React.FC = observer(() => {
         <FormDivider />
         <FormControl>
           <FormButton disabled={disabled} type="submit">
-            Добавить документ
+            Сохранить изменения
           </FormButton>
         </FormControl>
       </FormGroup>

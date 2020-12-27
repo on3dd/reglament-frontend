@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from '../../../../assets/images/logo.png';
@@ -27,9 +28,17 @@ const BrandWrapper = styled.div`
 
 const BrandImage = styled.img``;
 
-const BrandTitle = styled.h1`
+const BrandTitle = styled(Link)`
   margin: 0;
+  color: inherit;
   font-size: 2.5rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 `;
 
 const NavbarBrand: React.FC = () => {
@@ -44,7 +53,7 @@ const NavbarBrand: React.FC = () => {
           <BrandImage src={logo} />
         </BrandWrapper>
 
-        <BrandTitle>Артёмовский городской округ</BrandTitle>
+        <BrandTitle to="/">Артёмовский городской округ</BrandTitle>
       </BrandRow>
     </BrandContainer>
   );

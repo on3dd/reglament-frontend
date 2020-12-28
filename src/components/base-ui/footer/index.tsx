@@ -54,7 +54,9 @@ const BaseFooter: React.FC = observer(() => {
   }, [store.info.reg_num]);
 
   const date = useMemo(() => {
-    return store.info.date ? store.info.date : '………';
+    return store.info.date
+      ? new Date(store.info.date).toLocaleDateString('ru')
+      : '………';
   }, [store.info.date]);
 
   const reg_author = useMemo(() => {
@@ -73,8 +75,8 @@ const BaseFooter: React.FC = observer(() => {
             Сетевое издание «Официальный сайт правовой информации
             Артёмовского городского округа» Учредитель : Администрация
             Артёмовского городского округа Запись о регистрации СМИ: Эл №
-            {reg_num} от {date}, выдано Федеральной службой по надзору
-            в сфере связи, информационных технологий и массовых
+            {' ' + reg_num} от {date}, выдано Федеральной службой по
+            надзору в сфере связи, информационных технологий и массовых
             коммуникаций ({reg_author}) Главный редактор : {boss}
           </FooterText>
           <FooterAgeLimit>12+</FooterAgeLimit>

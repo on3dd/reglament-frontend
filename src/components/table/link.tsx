@@ -8,7 +8,11 @@ type TableLinkProps = PropsWithChildren<{
 const Link = styled.a``;
 
 const TableLink: React.FC<TableLinkProps> = ({ href, children }) => {
-  return <Link href={href}>{children}</Link>;
+  return (
+    <Link target="_blank" href={href}>
+      {children}
+    </Link>
+  );
 };
 
 export default TableLink;

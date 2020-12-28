@@ -14,8 +14,8 @@ export const mockSearch = async (
       'О мерах по укреплению пожарной безопасности на осенне-зимний период 2020-2021 годов ',
     agency: 'АГО',
     number: '490-па',
-    placed_at: '15.10.2020',
-    created_at: '15.10.2020',
+    placed_at: '10/15/2020',
+    created_at: '10/15/2020',
     file_path: 'http://www.africau.edu/images/default/sample.pdf',
   }));
 };

@@ -22,6 +22,7 @@ export const columns: Column<DocumentModel>[] = [
   {
     Header: 'Дата документа',
     accessor: 'placed_at',
+    Cell: ({ value }) => new Date(value).toLocaleDateString('ru'),
   },
   {
     Header: 'Номер документа',
@@ -37,6 +38,7 @@ export const columns: Column<DocumentModel>[] = [
   {
     Header: 'Дата размещения',
     accessor: 'created_at',
+    Cell: ({ value }) => new Date(value).toLocaleDateString('ru'),
   },
 ];
 

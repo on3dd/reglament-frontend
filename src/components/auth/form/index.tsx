@@ -2,6 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { observer } from 'mobx-react-lite';
+import styled from 'styled-components';
 
 import { UserModel } from '@reglament';
 
@@ -17,6 +18,12 @@ import {
   FormButton,
   FormDivider,
 } from '../../base-ui/form';
+
+const FormRequestError = styled(FormErrors)`
+  display: block;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.2rem;
+`;
 
 const defaultValueFactory = () => ({
   login: '',
@@ -40,7 +47,9 @@ const AuthForm: React.FC = observer(() => {
       try {
         await store.login(data);
 
-        history.push('/admin');
+        if (store.token) {
+          history.push('/admin');
+        }
       } catch (err: unknown) {
         console.error(err);
       }
@@ -50,6 +59,8 @@ const AuthForm: React.FC = observer(() => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {store.error && <FormRequestError>{store.error}</FormRequestError>}
+
       <Controller
         name="login"
         control={control}

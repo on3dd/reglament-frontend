@@ -54,16 +54,19 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
             <ThemeSwitchBodyItem heading="Размер шрифта">
               <ThemeSwitchBodyButton
                 name="font_dec"
+                title="Уменьшить размер шрифта"
                 onClick={() => onFontChange({ fontSize: fontSize - 1 })}
               />
 
               <ThemeSwitchBodyButton
                 name="font_black"
+                title="Размер шрифта по умолчанию"
                 onClick={() => onFontChange({ fontSize: 14 })}
               />
 
               <ThemeSwitchBodyButton
                 name="font_inc"
+                title="Увеличить размер шрифта"
                 onClick={() => onFontChange({ fontSize: fontSize + 1 })}
               />
             </ThemeSwitchBodyItem>
@@ -71,6 +74,7 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
             <ThemeSwitchBodyItem heading="Интервалы">
               <ThemeSwitchBodyButton
                 name="interval_dec"
+                title="Уменьшить межстрочный интервал"
                 onClick={() =>
                   onFontChange({ lineHeight: lineHeight - 0.1 })
                 }
@@ -78,11 +82,13 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
 
               <ThemeSwitchBodyButton
                 name="dot"
+                title="Межстрочный интервал по умолчанию"
                 onClick={() => onFontChange({ lineHeight: 1.1 })}
               />
 
               <ThemeSwitchBodyButton
                 name="interval_inc"
+                title="Увеличить межстрочный интервал"
                 onClick={() =>
                   onFontChange({ lineHeight: lineHeight + 0.1 })
                 }
@@ -93,24 +99,30 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
               <ThemeSwitchBodyButton
                 name="font_white"
                 scheme="black"
+                title="Темная тема"
                 onClick={() => onThemeChange('dark')}
               />
 
               <ThemeSwitchBodyButton
                 name="font_black"
                 scheme="white"
+                title="Светлая тема"
                 onClick={() => onThemeChange('light')}
               />
 
               <ThemeSwitchBodyButton
                 name="font_sepia"
                 scheme="sepia"
+                title="Коричневая тема"
                 onClick={() => onThemeChange('sepia')}
               />
             </ThemeSwitchBodyItem>
           </ThemeSwitchBodyGroup>
 
-          <ThemeSwitchBodyClose onClick={onSwitcherClick} />
+          <ThemeSwitchBodyClose
+            title="Закрыть"
+            onClick={onSwitcherClick}
+          />
         </StyledContainer>
       </BodyContainer>
     );

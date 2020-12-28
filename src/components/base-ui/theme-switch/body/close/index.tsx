@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Icon from '../../../icon';
 
 type ThemeSwitchBodyCloseProps = {
+  title?: string;
   onClick: (...args: any[]) => void;
 };
 
@@ -26,10 +27,11 @@ const StyledIcon = styled(Icon)`
 `;
 
 const ThemeSwitchBodyClose: React.FC<ThemeSwitchBodyCloseProps> = ({
+  title,
   onClick,
 }: ThemeSwitchBodyCloseProps) => {
   return (
-    <Button onClick={onClick}>
+    <Button title={title} onClick={onClick}>
       <StyledIcon name="close" />
     </Button>
   );

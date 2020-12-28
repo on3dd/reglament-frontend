@@ -9,6 +9,7 @@ type ButtonScheme = 'black' | 'white' | 'sepia';
 
 type ThemeSwitchBodyButtonProps = {
   name: Icon;
+  title?: string;
   scheme?: ButtonScheme;
   onClick?: (...args: any[]) => void;
 };
@@ -57,11 +58,12 @@ const SwitchIcon = styled(IconComponent)`
 
 const ThemeSwitchBodyButton: React.FC<ThemeSwitchBodyButtonProps> = ({
   name,
+  title = '',
   scheme = 'white',
   onClick,
 }: ThemeSwitchBodyButtonProps) => {
   return (
-    <SwitchButton scheme={scheme} onClick={onClick}>
+    <SwitchButton title={title} scheme={scheme} onClick={onClick}>
       <SwitchIcon name={name} />
     </SwitchButton>
   );

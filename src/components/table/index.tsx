@@ -20,7 +20,13 @@ import TableHeader from './header';
 import TableBody from './body';
 import TableFooter from './footer';
 
-const TableContainer = styled.div``;
+type TableContainerProps = PropsWithTheme<{}>;
+
+const TableContainer = styled.div<TableContainerProps>`
+  a {
+    color: ${({ theme }) => theme.linkColor};
+  }
+`;
 
 type TableLinkToAdminProps = PropsWithTheme<{}>;
 
@@ -74,7 +80,7 @@ const TableComponent: React.FC = observer(() => {
   }, [store]);
 
   return (
-    <TableContainer className="table">
+    <TableContainer theme={theme} className="table">
       <TableHeader />
       <TableBody instance={instance} />
       <TableFooter instance={instance} />

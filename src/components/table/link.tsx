@@ -5,7 +5,14 @@ type TableLinkProps = PropsWithChildren<{
   href: any;
 }>;
 
-const Link = styled.a``;
+const Link = styled.a`
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+`;
 
 const TableLink: React.FC<TableLinkProps> = ({ href, children }) => {
   return (

@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, action, toJS } from 'mobx';
 
 import { Font, FontDraft } from '@reglament';
 
@@ -19,19 +19,26 @@ export default class FontStore {
   }
 
   private getFont(): Font {
-    const font = localStorage.getItem('font') || '';
+    const font = localStorage.getItem('font') || '{}';
 
-    return font
-      ? JSON.parse(font)
-      : {
-          fontSize: 14,
-          lineHeight: 1.1,
-        };
+    return {
+      ...{
+        fontSize: 14,
+        lineHeight: 1.1,
+      },
+      ...JSON.parse(font),
+    };
   }
 
   private setFont(font: FontDraft) {
-    this.font = { ...this.font, ...font };
+    const f1 = toJS(this.font);
+    const f2 = toJS(font);
 
-    localStorage.setItem('font', JSON.stringify(font));
+    console.log('this.font before upd', f1);
+    console.log('font before upd', f2);
+
+    this.font = { ...f1, ...f2 };
+
+    localStorage.setItem('font', JSON.stringify(this.font));
   }
 }

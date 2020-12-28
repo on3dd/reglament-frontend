@@ -4,13 +4,14 @@ import { autorun } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
-import { Theme, ReglamentTheme } from '@reglament';
+import { Theme, ReglamentTheme, FontDraft } from '@reglament';
 
 import { useFontStore } from './store/font';
 import { useThemeStore } from './store/theme';
 import { useSiteInfoStore } from './store/site-info';
 
 import GlobalStyle from './utils/globalStyle';
+import { FontProvider } from './utils/contexts/FontContext';
 import { ThemeProvider } from './utils/contexts/ThemeContext';
 
 import RootComponent from './components/base-ui/root';
@@ -38,11 +39,7 @@ const AppContainer = styled.div`
 type AppProps = RouteConfigComponentProps<{}>;
 
 const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
-  const {
-    store: {
-      font: { fontSize, lineHeight },
-    },
-  } = useFontStore();
+  const { store: fontStore } = useFontStore();
   const { store: themeStore } = useThemeStore();
   const { store: siteInfoStore } = useSiteInfoStore();
 
@@ -52,9 +49,20 @@ const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
     });
   }, [siteInfoStore]);
 
+  const font = useMemo(() => {
+    return fontStore.font;
+  }, [fontStore.font]);
+
   const theme = useMemo(() => {
     return themeStore.theme;
   }, [themeStore.theme]);
+
+  const changeFont = useCallback(
+    (font: FontDraft) => {
+      fontStore.changeFont(font);
+    },
+    [fontStore],
+  );
 
   const changeTheme = useCallback(
     (theme: ReglamentTheme) => {
@@ -64,13 +72,18 @@ const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
   );
 
   return (
-    <ThemeProvider theme={theme} changeTheme={changeTheme}>
-      <AppContainer theme={theme}>
-        <GlobalStyle fontSize={fontSize} lineHeight={lineHeight} />
+    <FontProvider font={font} changeFont={changeFont}>
+      <ThemeProvider theme={theme} changeTheme={changeTheme}>
+        <AppContainer theme={theme}>
+          <GlobalStyle
+            fontSize={font.fontSize}
+            lineHeight={font.lineHeight}
+          />
 
-        <RootComponent route={route} />
-      </AppContainer>
-    </ThemeProvider>
+          <RootComponent route={route} />
+        </AppContainer>
+      </ThemeProvider>
+    </FontProvider>
   );
 });
 

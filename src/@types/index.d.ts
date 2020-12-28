@@ -3,6 +3,7 @@ declare module '@reglament' {
   import { TableInstance } from 'react-table';
 
   export interface Icons {
+    dot: string;
     eye: string;
     mail: string;
     close: string;

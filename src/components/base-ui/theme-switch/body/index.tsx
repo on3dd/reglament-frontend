@@ -58,6 +58,11 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
               />
 
               <ThemeSwitchBodyButton
+                name="font_black"
+                onClick={() => onFontChange({ fontSize: 14 })}
+              />
+
+              <ThemeSwitchBodyButton
                 name="font_inc"
                 onClick={() => onFontChange({ fontSize: fontSize + 1 })}
               />
@@ -69,6 +74,11 @@ const ThemeSwitchBody: React.FC<ThemeSwitchBodyProps> = observer(
                 onClick={() =>
                   onFontChange({ lineHeight: lineHeight - 0.1 })
                 }
+              />
+
+              <ThemeSwitchBodyButton
+                name="dot"
+                onClick={() => onFontChange({ lineHeight: 1.1 })}
               />
 
               <ThemeSwitchBodyButton

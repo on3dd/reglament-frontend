@@ -75,6 +75,7 @@ export const BREAKPOINTS = {
 };
 
 export const ICONS: Icons = {
+  dot: require('../assets/icons/dot.svg').default,
   eye: require('../assets/icons/eye.svg').default,
   mail: require('../assets/icons/mail.svg').default,
   close: require('../assets/icons/close.svg').default,

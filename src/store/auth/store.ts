@@ -2,7 +2,7 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { UserModel, Token, TokenModel } from '@reglament';
 
-import { login, logout } from '../../api/auth';
+// import { login, logout } from '../../api/auth';
 
 import { mockLogin, mockLogout } from '../../mocks/auth';
 
@@ -27,9 +27,9 @@ export default class UserStore {
     try {
       this.toggleFetching();
 
-      const { data: token } = await login(data);
+      // const { data: token } = await login(data);
 
-      // const token = await mockLogin(data);
+      const token = await mockLogin(data);
 
       runInAction(() => {
         this.setToken(token);

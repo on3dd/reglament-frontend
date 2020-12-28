@@ -282,7 +282,11 @@ const AdminEditForm: React.FC = observer(() => {
       <FormGroup>
         <FormDivider />
         <FormControl>
-          <FormButton disabled={disabled} type="submit">
+          <FormButton
+            disabled={disabled}
+            type="submit"
+            title="Сохранить изменения"
+          >
             Сохранить изменения
           </FormButton>
         </FormControl>

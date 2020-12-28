@@ -105,7 +105,7 @@ const AuthForm: React.FC = observer(() => {
       <FormGroup>
         <FormDivider />
         <FormControl>
-          <FormButton disabled={disabled} type="submit">
+          <FormButton disabled={disabled} type="submit" title="Войти">
             Войти
           </FormButton>
         </FormControl>

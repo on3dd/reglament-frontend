@@ -187,7 +187,7 @@ const TableHeader: React.FC = observer(() => {
           />
         </TableHeaderGroup>
 
-        <TableHeaderButton disabled={disabled} type="submit">
+        <TableHeaderButton disabled={disabled} type="submit" title="Поиск">
           Поиск
         </TableHeaderButton>
       </HeaderContainer>

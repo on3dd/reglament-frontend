@@ -8,6 +8,7 @@ import IconComponent from '../../../base-ui/icon';
 
 type TableFooterButtonProps = {
   name: Icon;
+  title?: string;
   onClick: (...args: any[]) => void;
 };
 
@@ -22,10 +23,11 @@ const Button = styled(BaseButton)`
 
 const TableFooterButton: React.FC<TableFooterButtonProps> = ({
   name,
+  title,
   onClick,
 }: TableFooterButtonProps) => {
   return (
-    <Button onClick={onClick}>
+    <Button title={title} onClick={onClick}>
       <IconComponent name={name} />
     </Button>
   );

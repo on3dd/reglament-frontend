@@ -31,6 +31,7 @@ const Button = styled.button`
 `;
 
 const BaseButton: React.FC<BaseButtonProps> = ({
+  title,
   disabled,
   children,
   className,
@@ -41,6 +42,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   return (
     <Button
       theme={theme}
+      title={title}
       disabled={disabled}
       className={className}
       onClick={onClick}

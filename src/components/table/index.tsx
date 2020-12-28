@@ -86,7 +86,11 @@ const TableComponent: React.FC = observer(() => {
       <TableFooter instance={instance} />
 
       {token && (
-        <TableLinkToAdmin theme={theme} to="/admin">
+        <TableLinkToAdmin
+          theme={theme}
+          to="/admin"
+          title="Перейти в панель администратора"
+        >
           Администрирование
         </TableLinkToAdmin>
       )}

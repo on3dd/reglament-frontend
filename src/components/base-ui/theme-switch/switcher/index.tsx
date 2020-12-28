@@ -40,7 +40,7 @@ const ThemeSwitchSwitcher: React.FC<ThemeSwitchSwitcherProps> = ({
 }: ThemeSwitchSwitcherProps) => {
   return (
     <ThemeSwitchContainer>
-      <ThemeSwitchButton onClick={onClick}>
+      <ThemeSwitchButton title="Настройки сайта" onClick={onClick}>
         <ThemeSwitchIcon name="eye" />
       </ThemeSwitchButton>
     </ThemeSwitchContainer>

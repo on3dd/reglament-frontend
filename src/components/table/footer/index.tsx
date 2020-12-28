@@ -91,13 +91,31 @@ const TableFooter: React.FC<TableFooterProps> = ({
 
   return (
     <FooterContainer theme={theme}>
-      <TableFooterButton name="arrow_left_sec" onClick={onFirstClick} />
-      <TableFooterButton name="arrow_left" onClick={onPrevClick} />
+      <TableFooterButton
+        name="arrow_left_sec"
+        title="Перейти на первую страницу"
+        onClick={onFirstClick}
+      />
+
+      <TableFooterButton
+        name="arrow_left"
+        title="Перейти на предыдущую страницу"
+        onClick={onPrevClick}
+      />
 
       <TableFooterPage max={max} value={value} onChange={onChange} />
 
-      <TableFooterButton name="arrow_right" onClick={onNextClick} />
-      <TableFooterButton name="arrow_right_sec" onClick={onLastClick} />
+      <TableFooterButton
+        name="arrow_right"
+        title="Перейти на следующую страницу"
+        onClick={onNextClick}
+      />
+
+      <TableFooterButton
+        name="arrow_right_sec"
+        title="Перейти на последнюю страницу"
+        onClick={onLastClick}
+      />
     </FooterContainer>
   );
 };

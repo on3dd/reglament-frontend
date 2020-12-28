@@ -252,7 +252,11 @@ const AdminAddForm: React.FC = observer(() => {
       <FormGroup>
         <FormDivider />
         <FormControl>
-          <FormButton disabled={disabled} type="submit">
+          <FormButton
+            disabled={disabled}
+            type="submit"
+            title="Добавить документ"
+          >
             Добавить документ
           </FormButton>
         </FormControl>

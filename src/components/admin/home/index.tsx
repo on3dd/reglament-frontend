@@ -30,11 +30,17 @@ const AdminHomeComponent: React.FC = () => {
 
   return (
     <AdminHomeContainer theme={theme}>
-      <AdminHomeLink to="/admin/add">
+      <AdminHomeLink
+        to="/admin/add"
+        title="Перейти в добавление документа"
+      >
         Добавить новый документ
       </AdminHomeLink>
 
-      <AdminHomeLink to="/admin/edit">
+      <AdminHomeLink
+        to="/admin/edit"
+        title="Перейти в изменение информации о сервисе"
+      >
         Изменить информацию о сервисе
       </AdminHomeLink>
     </AdminHomeContainer>

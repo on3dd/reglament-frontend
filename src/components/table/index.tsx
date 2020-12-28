@@ -45,7 +45,7 @@ const TableLinkToAdmin = styled(Link)`
 
   color: ${({ theme }: TableLinkToAdminProps) => {
     return theme.fontColorNeg;
-  }};
+  }} !important;
 
   background-color: ${({ theme }: TableLinkToAdminProps) => {
     return theme.buttonColor;

@@ -40,11 +40,11 @@ const FormControlNested = styled.div`
 `;
 
 const defaultValuesFactory = (): DocumentDraft => ({
-  type: DOCUMENT_TYPES[0],
-  agency: AGENCY_TYPES[0],
-  placed_at: '',
-  number: '',
   name: '',
+  type: '',
+  agency: '',
+  number: '',
+  placed_at: '',
   is_project: true,
 });
 

@@ -21,6 +21,8 @@ const BaseSelect: React.FC<BaseSelectProps> = forwardRef(
   (props, _: BaseSelectProps) => {
     return (
       <Select {...props}>
+        <option value="">{'Не выбрано'}</option>
+
         {props.items.map((el: SelectItem) => (
           <option key={el} value={el}>
             {el}

@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import { useSiteInfoStore } from '../../../../../store/site-info';
 
-const ContactsAddress = styled.div``;
+const ContactsAddress = styled.div`
+  text-align: end;
+`;
 
 const ContactsAddressText = styled.span`
   font-size: 0.85rem;

@@ -5,6 +5,7 @@ import ContactsContactUs from './contact-us';
 import ContactsAddress from './address';
 
 const ContactsContainer = styled.div`
+  display: inline-block;
   max-width: 375px;
 `;
 

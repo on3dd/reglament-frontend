@@ -8,7 +8,8 @@ export const mockFetchSiteInfo = async (): Promise<SiteInfoModel> => {
   return {
     email: 'admartm@mail.primorye.ru',
     number: '8 (42337) 4-94-90',
-    number_name: 'справочная служба',
+    number_name:
+      'справочная служба администрации Артёмовского городского округа',
     address: '692760, Приморский край, г.Артём, ул.Кирова, 48',
     reg_num: '',
     date: '',

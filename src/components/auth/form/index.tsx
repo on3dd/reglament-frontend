@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import { observer } from 'mobx-react-lite';
 
 import { UserModel } from '@reglament';
@@ -23,6 +24,7 @@ const defaultValueFactory = () => ({
 });
 
 const AuthForm: React.FC = observer(() => {
+  const history = useHistory();
   const { store } = useAuthStore();
 
   const { control, errors, handleSubmit } = useForm({
@@ -35,11 +37,17 @@ const AuthForm: React.FC = observer(() => {
 
   const onSubmit = useCallback(
     async (data: UserModel) => {
-      console.log('data:', data);
+      try {
+        console.log('data:', data);
 
-      await store.login(data);
+        await store.login(data);
+
+        history.push('/admin');
+      } catch (err: unknown) {
+        console.error(err);
+      }
     },
-    [store],
+    [store, history],
   );
 
   return (

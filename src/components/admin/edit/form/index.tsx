@@ -69,8 +69,6 @@ const AdminEditForm: React.FC = observer(() => {
 
   const onSubmit = useCallback(
     async (data: SiteInfoModel) => {
-      console.log('data:', data);
-
       await store.updateSiteInfo(data);
     },
     [store],

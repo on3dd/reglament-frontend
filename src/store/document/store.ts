@@ -27,8 +27,6 @@ export default class DocumentStore {
 
     runInAction(() => {
       this.document = document;
-
-      console.log('createDocument this.document', this.document);
     });
 
     this.toggleFetching();
@@ -37,8 +35,6 @@ export default class DocumentStore {
   private toggleFetching() {
     runInAction(() => {
       this.fetching = !this.fetching;
-
-      console.log('this.fetching', this.fetching);
     });
   }
 }

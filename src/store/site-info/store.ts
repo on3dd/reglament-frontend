@@ -41,8 +41,6 @@ export default class SiteInfoStore {
 
     runInAction(() => {
       this.info = info;
-
-      console.log('fetchSiteInfo this.info', this.info);
     });
 
     this.toggleFetching();
@@ -57,8 +55,6 @@ export default class SiteInfoStore {
 
     runInAction(() => {
       this.info = info;
-
-      console.log('createSiteInfo this.info', this.info);
     });
 
     this.toggleFetching();
@@ -67,8 +63,6 @@ export default class SiteInfoStore {
   private toggleFetching() {
     runInAction(() => {
       this.fetching = !this.fetching;
-
-      console.log('this.fetching', this.fetching);
     });
   }
 }

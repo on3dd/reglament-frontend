@@ -38,8 +38,6 @@ const AuthForm: React.FC = observer(() => {
   const onSubmit = useCallback(
     async (data: UserModel) => {
       try {
-        console.log('data:', data);
-
         await store.login(data);
 
         history.push('/admin');

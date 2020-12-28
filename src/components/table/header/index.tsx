@@ -70,8 +70,6 @@ const TableHeader: React.FC = observer(() => {
       //   }, [] as [string, any][]),
       // );
 
-      console.log('data:', data);
-
       await store.search(data);
     },
     [store],

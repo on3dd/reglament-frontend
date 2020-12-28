@@ -2,6 +2,11 @@ import { makeObservable, observable, action, toJS } from 'mobx';
 
 import { Font, FontDraft } from '@reglament';
 
+const DEFAULT_FONT: Font = {
+  fontSize: 14,
+  lineHeight: 1.1,
+};
+
 export default class FontStore {
   font: Font;
 
@@ -22,10 +27,7 @@ export default class FontStore {
     const font = localStorage.getItem('font') || '{}';
 
     return {
-      ...{
-        fontSize: 14,
-        lineHeight: 1.1,
-      },
+      ...DEFAULT_FONT,
       ...JSON.parse(font),
     };
   }
@@ -33,9 +35,6 @@ export default class FontStore {
   private setFont(font: FontDraft) {
     const f1 = toJS(this.font);
     const f2 = toJS(font);
-
-    console.log('this.font before upd', f1);
-    console.log('font before upd', f2);
 
     this.font = { ...f1, ...f2 };
 

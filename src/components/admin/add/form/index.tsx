@@ -77,8 +77,6 @@ const AdminAddForm: React.FC = observer(() => {
 
   const onSubmit = useCallback(
     async (data: DocumentDraft) => {
-      console.log('data:', data);
-
       await store.createDocument(data);
     },
     [store],

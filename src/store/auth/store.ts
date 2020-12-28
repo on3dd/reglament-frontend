@@ -29,8 +29,6 @@ export default class UserStore {
 
     runInAction(() => {
       this.setToken(token);
-
-      console.log('login this.token', this.token);
     });
 
     this.toggleFetching();
@@ -45,8 +43,6 @@ export default class UserStore {
 
     runInAction(() => {
       this.removeToken();
-
-      console.log('logout this.token', this.token);
     });
 
     this.toggleFetching();
@@ -55,8 +51,6 @@ export default class UserStore {
   private toggleFetching() {
     runInAction(() => {
       this.fetching = !this.fetching;
-
-      console.log('this.fetching', this.fetching);
     });
   }
 

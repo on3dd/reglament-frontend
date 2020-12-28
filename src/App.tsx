@@ -6,11 +6,12 @@ import styled from 'styled-components';
 
 import { Theme, ReglamentTheme } from '@reglament';
 
+import { useFontStore } from './store/font';
 import { useThemeStore } from './store/theme';
 import { useSiteInfoStore } from './store/site-info';
 
-import { ThemeProvider } from './utils/contexts/ThemeContext';
 import GlobalStyle from './utils/globalStyle';
+import { ThemeProvider } from './utils/contexts/ThemeContext';
 
 import RootComponent from './components/base-ui/root';
 
@@ -37,6 +38,11 @@ const AppContainer = styled.div`
 type AppProps = RouteConfigComponentProps<{}>;
 
 const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
+  const {
+    store: {
+      font: { fontSize, lineHeight },
+    },
+  } = useFontStore();
   const { store: themeStore } = useThemeStore();
   const { store: siteInfoStore } = useSiteInfoStore();
 
@@ -60,7 +66,7 @@ const App: React.FC<AppProps> = observer(({ route }: AppProps) => {
   return (
     <ThemeProvider theme={theme} changeTheme={changeTheme}>
       <AppContainer theme={theme}>
-        <GlobalStyle fontSize={14} lineHeight={1.2} />
+        <GlobalStyle fontSize={fontSize} lineHeight={lineHeight} />
 
         <RootComponent route={route} />
       </AppContainer>

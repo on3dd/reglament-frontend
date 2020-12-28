@@ -73,12 +73,26 @@ declare module '@reglament' {
     buttonColorDis: string;
   }
 
+  export interface Font {
+    fontSize: number;
+    lineHeight: number;
+  }
+
+  export interface FontDraft {
+    fontSize?: number;
+    lineHeight?: number;
+  }
+
+  export type PropsWithTable<T> = T & {
+    instance: TableInstance<DocumentModel>;
+  };
+
   export type PropsWithTheme<T> = T & {
     theme: Theme;
   };
 
-  export type PropsWithTable<T> = T & {
-    instance: TableInstance<DocumentModel>;
+  export type PropsWithFont<T> = T & {
+    font: Font;
   };
 
   export type SelectItem = ReactText;
